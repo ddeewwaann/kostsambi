@@ -1,6 +1,6 @@
 <?php 
 
-class kost extends CI_Model{
+class Kost extends CI_Model{
     
     function daftarkost($data){
         $table = 'kost';

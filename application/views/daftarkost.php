@@ -36,7 +36,7 @@
                                 </a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item">PROFILE</a>
-                                    <a class="dropdown-item" href="<?php echo base_url("index.php/webController/logout")?>">LOGOUT</a>
+                                    <a class="dropdown-item" href="<?php echo base_url("index.php/WebController/logout")?>">LOGOUT</a>
                                 </div>
                             </div>
                             <img class="col-6" style="width:60px";height="60px" src="<?php echo base_url('assets/img/user.png')?>">
@@ -56,7 +56,7 @@
                 <div class="row">
                     <div class="col-1"></div>
                     <div class="col-6">
-                        <form action="<?php echo base_url('index.php/webController/daftarkost_data')?>" method="post" enctype="multipart/form-data" >
+                        <form action="<?php echo base_url('index.php/WebController/daftarkost_data')?>" method="post" enctype="multipart/form-data" >
                             <div class="form-group">
                                 <label><h6>Nama Kost</h6></label>
                                 <input type="text" class="form-control" placeholder="Masukkan Nama Kost" name="namakost">

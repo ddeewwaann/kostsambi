@@ -49,7 +49,7 @@
                                 </a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item">PROFILE</a>
-                                    <a class="dropdown-item" href="<?php echo base_url("index.php/webController/logout")?>">LOGOUT</a>
+                                    <a class="dropdown-item" href="<?php echo base_url("index.php/WebController/logout")?>">LOGOUT</a>
                                 </div>
                             </div>
                             <img class="col-6" style="width:60px";height="60px" src="<?php echo base_url('assets/img/user.png')?>">
@@ -64,9 +64,9 @@
                     <div class="sidebar-heading ">Start Bootstrap </div>
                         <div class="list-group list-group-flush">
                             <a href="#" class="list-group-item list-group-item-action aa">Dashboard</a>
-                            <a href="<?php echo base_url("index.php/webController/admin")?>" class="list-group-item list-group-item-action aa">PENCARI</a>
-                            <a href="<?php echo base_url("index.php/webController/admin_pemilik")?>" class="list-group-item list-group-item-action aa">PEMILIK</a>
-                            <a href="<?php echo base_url("index.php/webController/admin_listkost")?>" class="list-group-item list-group-item-action aa">LIST KOST</a>
+                            <a href="<?php echo base_url("index.php/WebController/admin")?>" class="list-group-item list-group-item-action aa">PENCARI</a>
+                            <a href="<?php echo base_url("index.php/WebController/admin_pemilik")?>" class="list-group-item list-group-item-action aa">PEMILIK</a>
+                            <a href="<?php echo base_url("index.php/WebController/admin_listkost")?>" class="list-group-item list-group-item-action aa">LIST KOST</a>
                         </div>
                 </div>
                 <div class="container-fluid">

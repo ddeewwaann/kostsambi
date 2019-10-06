@@ -1,6 +1,6 @@
 <?php 
 
-class account extends CI_Model{
+class Account extends CI_Model{
     
     function daftar_akun($table,$data){
         $daftar= $this->db->insert($table,$data);

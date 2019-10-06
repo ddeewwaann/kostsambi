@@ -127,7 +127,7 @@
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link font-weight-bold" id="daftarkankost" href="<?php echo base_url('index.php/webController/daftarkost')?>" style="color: #2d5066;font-size:18px">DAFTARKAN KOST</a>
+                            <a class="nav-link font-weight-bold" id="daftarkankost" href="<?php echo base_url('index.php/WebController/daftarkost')?>" style="color: #2d5066;font-size:18px">DAFTARKAN KOST</a>
                         </li>
                         <li class="nav-item" id="loginbutton">
                             <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCenter"  style="background-color: #d66565;">LOGIN</button>
@@ -139,7 +139,7 @@
                                 </a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item">PROFILE</a>
-                                    <a class="dropdown-item" href="<?php echo base_url("index.php/webController/logout")?>">LOGOUT</a>
+                                    <a class="dropdown-item" href="<?php echo base_url("index.php/WebController/logout")?>">LOGOUT</a>
                                 </div>
                             </div>
                         </li>
@@ -164,7 +164,7 @@
                                         <img src="<?php echo base_url('assets/img/logo-01.png')?>">
                                         <h3 style="color:#2d5066">Masuk Ke Kost Sambi</h3>
                                     </div>
-                                    <form action="<?php echo base_url('index.php/webController/login_data')?>" method="post">
+                                    <form action="<?php echo base_url('index.php/WebController/login_data')?>" method="post">
                                         <div class="form-group row">
                                             <label class="col-2"><img style="height:50px;width:50px" src="<?php echo base_url('assets/img/user.png')?>" ></label>
                                             <input type="text" class="form-control col-9" name="username" placeholder="Username">
@@ -177,7 +177,7 @@
                                     </form>
                                 </div>
                                 <div class="tab-pane" id="tabregis">
-                                    <form action="<?php echo base_url('index.php/webController/daftarakun_data')?>" method="post" enctype="multipart/form-data">
+                                    <form action="<?php echo base_url('index.php/WebController/daftarakun_data')?>" method="post" enctype="multipart/form-data">
                                         <div class="text-center">
                                             <img src="<?php echo base_url('assets/img/logo-01.png')?>">
                                             <h3 style="color:#2d5066">Bergabung Bersama Kost Sambi</h3>

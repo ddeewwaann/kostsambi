@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class webController extends CI_Controller {
+class WebController extends CI_Controller {
     function __construct(){
         parent::__construct();
-        $this->load->model('account');
-        $this->load->model('kost');
+        $this->load->model('Account');
+        $this->load->model('Kost');
         $this->load->helper(array('form', 'url'));
     }
 	public function index()
@@ -19,29 +19,29 @@ class webController extends CI_Controller {
         }
         else{
             $this->session->set_flashdata('daftarkost_alert', 'notlogin');
-            redirect('webController/index');
+            redirect('WebController/index');
         }
         
     }
     public function admin(){
         $pencari = 'pencari';
-        $data['pencari'] = $this->account->getakun($pencari);
+        $data['pencari'] = $this->Account->getakun($pencari);
         $this->load->view('admin',$data);
     }
     public function admin_pemilik(){
         $pemilik = 'pemilik';
-        $data['pemilik'] = $this->account->getakun($pemilik);
+        $data['pemilik'] = $this->Account->getakun($pemilik);
         $this->load->view('admin_pemilik',$data);
     }
     public function admin_listkost(){
         $kost = 'kost';
-        $data['kost'] = $this->kost->getkost($kost);
+        $data['kost'] = $this->Kost->getkost($kost);
         $this->load->view('admin_listkost',$data);
     }
     public function login_data(){
         $username = $this->input->post('username');
         $password = md5($this->input->post('password'));
-        $ceklogin = $this->account->login($username,$password);
+        $ceklogin = $this->Account->login($username,$password);
         $role = $ceklogin->role;
         if ($ceklogin) {
             $sess_data = array(
@@ -51,21 +51,21 @@ class webController extends CI_Controller {
             );
             if($role=='3'){
                 $this->session->set_userdata($sess_data);
-                redirect('webController/admin');
+                redirect('WebController/admin');
             }
             else{
                 $this->session->set_userdata($sess_data);
                 $this->session->set_flashdata('login_alert', 'login_berhasil');
-                redirect('webController/index');
+                redirect('WebController/index');
             }
         } else {
             $this->session->set_flashdata('login_alert', 'login_gagal');
-            redirect('webController/index');
+            redirect('WebController/index');
         }
     }
     public function logout(){
         $this->session->sess_destroy();
-        redirect('webController/index');
+        redirect('WebController/index');
     }
     public function daftarakun_data(){
         $pass = $this->input->post('password');
@@ -85,7 +85,7 @@ class webController extends CI_Controller {
         if($pass==$repass){
             if($this->account->cekid_daftar($username)){
                 $this->session->set_flashdata('daftar_alert','registrasi_gagal');
-                redirect('webController/index'); 
+                redirect('WebController/index'); 
             }
             else{
                 if($role=="PENCARI KOST"){
@@ -96,7 +96,7 @@ class webController extends CI_Controller {
                         "role"=> "1"
                     );
                     $role='1';
-                    $this->account->daftar_akun($akun, $data2);
+                    $this->Account->daftar_akun($akun, $data2);
                 }
                 else{
                     $table='pemilik';
@@ -106,7 +106,7 @@ class webController extends CI_Controller {
                         "role"=> "2"
                     );
                     $role='2';
-                    $this->account->daftar_akun($akun, $data2);
+                    $this->Account->daftar_akun($akun, $data2);
                 }
                 $sess_data = array(
                     'logged_in' => 1,
@@ -114,14 +114,14 @@ class webController extends CI_Controller {
                     'role' => $role
                 );
                 $this->session->set_userdata($sess_data);
-                $this->account->daftar_akun($table, $data);
+                $this->Account->daftar_akun($table, $data);
                 $this->session->set_flashdata('daftar_alert','registrasi_berhasil');
-                redirect('webController/index');
+                redirect('WebController/index');
             }
         }
         else{
             $this->session->set_flashdata('daftar_alert','registrasi_gagal');
-                redirect('webController/index');
+                redirect('WebController/index');
         }
     }
     public function daftarkost_data(){
@@ -146,7 +146,7 @@ class webController extends CI_Controller {
                 "contact" => $this->input->post('contact',true),
                 "foto"=> $path
             );
-            $this->kost->daftarkost($data);
-            redirect('webController/daftarkost'); 
+            $this->Kost->daftarkost($data);
+            redirect('WebController/daftarkost'); 
     }
 }
