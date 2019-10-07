@@ -92,6 +92,7 @@
                     $("#loginbutton").hide();
                     $("#afterlogin").show();
                     $("#daftarkankost").hide();
+                    $("#mykost").hide();
                 });
                 </script>';
         }
@@ -101,6 +102,7 @@
                     $("#loginbutton").hide();
                     $("#afterlogin").show();
                     $("#daftarkankost").show();
+                    $("#mykost").show();
                 });
                 </script>';
         }
@@ -128,6 +130,9 @@
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link font-weight-bold" id="daftarkankost" href="<?php echo base_url('index.php/WebController/daftarkost')?>" style="color: #2d5066;font-size:18px">DAFTARKAN KOST</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold" id="mykost" href="<?php echo base_url('index.php/WebController/mykost')?>" style="color: #2d5066;font-size:18px">MY KOST</a>
                         </li>
                         <li class="nav-item" id="loginbutton">
                             <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCenter"  style="background-color: #d66565;">LOGIN</button>

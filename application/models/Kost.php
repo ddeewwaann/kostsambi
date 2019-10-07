@@ -27,5 +27,10 @@ class Kost extends CI_Model{
         $data = $this->db->get($table);
 		return $data->result_array();
 	}
+    public function getkost_id($username){
+        $this->db->where('namapemilik',$username);
+        $data = $this->db->get('kost');
+		return $data->result_array();
+    }
 }
 ?>

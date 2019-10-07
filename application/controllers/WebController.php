@@ -23,6 +23,11 @@ class WebController extends CI_Controller {
         }
         
     }
+    public function mykost(){
+        $username = $this->session->userdata('username');
+        $data['kost'] = $this->Kost->getkost_id($username);
+        $this->load->view('mykost',$data);
+    }
     public function admin(){
         $pencari = 'pencari';
         $data['pencari'] = $this->Account->getakun($pencari);
