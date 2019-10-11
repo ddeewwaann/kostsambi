@@ -24,9 +24,15 @@ class WebController extends CI_Controller {
         
     }
     public function mykost(){
-        $username = $this->session->userdata('username');
-        $data['kost'] = $this->Kost->getkost_id($username);
-        $this->load->view('mykost',$data);
+        if($this->session->userdata('logged_in')==1){
+            $username = $this->session->userdata('username');
+            $data['kost'] = $this->Kost->getkost_id($username);
+            $this->load->view('mykost',$data); 
+        }
+        else{
+            $this->session->set_flashdata('daftarkost_alert', 'notlogin');
+            redirect('WebController/index');
+        }
     }
     public function admin(){
         $pencari = 'pencari';
@@ -88,7 +94,7 @@ class WebController extends CI_Controller {
         $repass = $this->input->post('repassword');
         $akun = 'account';
         if($pass==$repass){
-            if($this->account->cekid_daftar($username)){
+            if($this->Account->cekid_daftar($username)){
                 $this->session->set_flashdata('daftar_alert','registrasi_gagal');
                 redirect('WebController/index'); 
             }
@@ -132,7 +138,7 @@ class WebController extends CI_Controller {
     public function daftarkost_data(){
         $config['upload_path']          =  './upload/';
         $config['allowed_types']        =  'jpg|png';
-        $config['max_size']             =  2048;
+        $config['max_size']             =  5000;
         $config['max_width']            =  5000;
         $config['max_height']           = 5000;
         
@@ -147,11 +153,40 @@ class WebController extends CI_Controller {
                 "fasilitas" => $this->input->post('fasilitas',true),
                 "harga"=> $this->input->post('harga',true),
                 "jenis"=> $this->input->post('jeniskost',true),
+                "jumlahkamar"=>$this->input->post('jumlahkamar','true'),
                 "namapemilik"=> $this->input->post('namapemilik', true),
                 "contact" => $this->input->post('contact',true),
                 "foto"=> $path
             );
             $this->Kost->daftarkost($data);
             redirect('WebController/daftarkost'); 
+    }
+    
+    public function delete_akun($username)
+	{
+        $this->Account->delete_akun($username);
+		redirect('WebController/admin');
+	}
+    
+    public function delete_kost($kodekost)
+	{
+        $this->Kost->delete_kost($kodekost);
+		redirect('webController/admin_listkost');
+	}
+    
+    public function delete_mykost($kodekost)
+	{
+        $this->Kost->delete_kost($kodekost);
+		redirect('webController/mykost');
+	}
+    public function view_kost_pemilik($kodekost){
+        if($this->session->userdata('logged_in')==1){
+            $data['view_kost'] = $this->Kost->getkost_kode($kodekost);
+            $this->load->view('view_kost_pemilik',$data); 
+        }
+        else{
+            $this->session->set_flashdata('daftarkost_alert', 'notlogin');
+            redirect('WebController/index');
+        }
     }
 }

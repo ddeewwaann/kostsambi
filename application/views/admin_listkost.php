@@ -85,6 +85,7 @@
                                         <th scope="col">JENIS</th>
                                         <th scope="col">PEMILIK</th>
                                         <th scope="col">CONTACT</th>
+                                        <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -98,11 +99,14 @@
                                                 <td><?= $kst['jenis'];?></td>
                                                 <td><?= $kst['namapemilik'];?></td>
                                                 <td><?= $kst['contact'];?></td>
+                                                <td><a href="<?= base_url(); ?>index.php/WebController/delete_kost/<?=$kst['kodekost'] ?>" class="badge badge-danger float-center" onclick="return confirm('Apakah anda yakin menghapus data ini?');" ?>hapus</a></td>
+                                        
                                     </tr>
                                         <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
+                        
                     </div>
                 </div>
             </div>

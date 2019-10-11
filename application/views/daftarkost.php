@@ -86,6 +86,10 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label><h6>Jumlah Kamar</h6></label>
+                                <input type="number" class="form-control" placeholder="Jumlah Kamar Yang Tersisa" name="jumlahkamar">
+                            </div>
+                            <div class="form-group">
                                 <label><h6>Nama Pemilik</h6></label>
                                 <input type="text" class="form-control" placeholder="<?php echo $this->session->userdata('username') ?>" name="namapemilik" value="<?php echo $this->session->userdata('username') ?>" readonly>
                             </div>

@@ -83,6 +83,8 @@
                                         <th scope="col">USERNAME</th>
                                         <th scope="col">NO REKENING</th>
                                         <th scope="col">CONTACT</th>
+                                        <th scope="col"></th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -94,6 +96,7 @@
                                                 <td><?= $pcr['username'];?></td>
                                                 <td><?= $pcr['norekening'];?></td>
                                                 <td><?= $pcr['contact'];?></td>
+                                                <td><a href="<?= base_url(); ?>index.php/WebController/delete_akun/<?=$pcr['username'] ?>" class="badge badge-danger float-center" onclick="return confirm('Apakah anda yakin menghapus data ini?');" ?>hapus</a></td>
                                     </tr>
                                         <?php endforeach; ?>
                                 </tbody>

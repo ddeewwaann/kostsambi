@@ -64,9 +64,9 @@
                                 <div class="card-body">
                                     <h5 class="card-title"><?= $kst['alamat'];?></h5>
                                     <img class="col-3" src="<?php echo base_url($kst['foto'])?>" style="width:100px;heigth:50px">
-                                    <a class="btn col-3">VIEW</a>
+                                    <a class="btn col-3" href="<?= base_url(); ?>index.php/WebController/view_kost_pemilik/<?=$kst['kodekost'] ?>">VIEW</a>
                                     <a class="btn col-3">EDIT</a>
-                                    <a class="btn col-3">DELETE</a>
+                                    <a class="btn col-3" href="<?= base_url(); ?>index.php/WebController/delete_mykost/<?=$kst['kodekost'] ?>">DELETE</a>
                                 </div>
                             </div>
                         <br>
