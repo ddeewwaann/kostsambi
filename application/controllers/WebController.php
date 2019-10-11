@@ -138,28 +138,36 @@ class WebController extends CI_Controller {
     public function daftarkost_data(){
         $config['upload_path']          =  './upload/';
         $config['allowed_types']        =  'jpg|png';
-        $config['max_size']             =  5000;
+        $config['max_size']             =  2048;
         $config['max_width']            =  5000;
         $config['max_height']           = 5000;
         
-        $this->load->library('upload', $config);
-        $this->upload->do_upload('userfile');
-            $content = $this->upload->data();
-            $path = "upload/".$content["file_name"];
-            $data = array(
-                "namakost"=> $this->input->post('namakost',true),
-                "kodekost"=> $this->input->post('kodekost',true),
-                "alamat"=> $this->input->post('alamat',true),
-                "fasilitas" => $this->input->post('fasilitas',true),
-                "harga"=> $this->input->post('harga',true),
-                "jenis"=> $this->input->post('jeniskost',true),
-                "jumlahkamar"=>$this->input->post('jumlahkamar','true'),
-                "namapemilik"=> $this->input->post('namapemilik', true),
-                "contact" => $this->input->post('contact',true),
-                "foto"=> $path
-            );
+        $this->load->library('upload',$config);
+        $cek = $this->upload->do_upload('userfile');
+        $content = $this->upload->data();
+        $path = "upload/".$content["file_name"];
+        $data = array(
+            "namakost"=> $this->input->post('namakost',true),
+            "kodekost"=> $this->input->post('kodekost',true),
+            "alamat"=> $this->input->post('alamat',true),
+            "fasilitas" => $this->input->post('fasilitas',true),
+            "harga"=> $this->input->post('harga',true),
+            "jenis"=> $this->input->post('jeniskost',true),
+            "jumlahkamar"=>$this->input->post('jumlahkamar','true'),
+            "namapemilik"=> $this->input->post('namapemilik', true),
+            "contact" => $this->input->post('contact',true),
+            "foto"=> $path
+        );
+        if($cek){
             $this->Kost->daftarkost($data);
-            redirect('WebController/daftarkost'); 
+            $this->session->set_flashdata('daftarkost_alert', 'berhasil');
+            redirect('WebController/daftarkost');
+        }
+        else{
+            $this->session->set_flashdata('daftarkost_alert', 'gagal');
+            redirect('WebController/daftarkost');
+        }
+         
     }
     
     public function delete_akun($username)

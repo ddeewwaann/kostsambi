@@ -17,6 +17,15 @@
             }
         </style>
     </head>
+    <?php 
+        if($this->session->flashdata('daftarkost_alert')=='berhasil'){
+            echo "<script>alert('Registrasi Succes');</script>";
+        }
+        else if($this->session->flashdata('daftarkost_alert')=='gagal'){
+            echo "<script>alert('Upload Foto Gagal,Silahkan Daftar Kembali');</script>";
+        }
+    ?>
+    
     <body>
         <section>
             <nav class="navbar fixed-top navbar-expand-sm" style="background-color:#2d5066">
@@ -27,8 +36,14 @@
                     </a>
                 </div>
                 <ul class="navbar-nav mr-auto ">
-                    </ul>
+                </ul>
                     <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold" id="daftarkankost" href="<?php echo base_url('index.php/WebController/daftarkost')?>" style="color: white;font-size:18px">DAFTARKAN KOST</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold" id="mykost" href="<?php echo base_url('index.php/WebController/mykost')?>" style="color: white;font-size:18px">MY KOST</a>
+                        </li>
                         <li class="nav-item row">
                             <div class="dropdown col-6">
                                 <a class="dropdown-toggle btn btn-secondary" style="background-color: #d66565; height:50px;width:80px;font-size:15px;" data-toggle="dropdown">
