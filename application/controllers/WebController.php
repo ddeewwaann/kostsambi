@@ -196,5 +196,6 @@ class WebController extends CI_Controller {
             $this->session->set_flashdata('daftarkost_alert', 'notlogin');
             redirect('WebController/index');
         }
+        
     }
 }

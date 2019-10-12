@@ -90,7 +90,7 @@
                             </div>
                             <div class="form-group">
                                 <label><h6>Harga</h6></label>
-                                <input type="text" class="form-control" placeholder="Masukkan Harga Kost" name="harga" required>
+                                <input type="text" class="form-control" placeholder="Masukkan Harga Kost Per Tahun" name="harga" required>
                             </div>
                             <div class="form-group">
                                 <label><h6>Jenis Kost</h6></label>

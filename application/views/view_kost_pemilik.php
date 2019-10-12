@@ -6,12 +6,34 @@
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        
+        
         <style>
             .carousel-item{
                 height: 500px;
             }
             .carousel-item img{
                 height: 500px;
+                object-fit: contain;
+            }
+            .carousel{
+                background-color: #2d5066;
+            }
+            .body{
+                color: #2d5066;
+            }
+            .harga{
+                border-style: solid;
+                border-color: #2d5066;
+                border-width: 3px;
+                height: 150px;
+                width: 330px;
+            }
+            .separator{
+                border-style: solid;
+                height: 3px;
+                color: #2d5066
+            }
         </style>
     </head>
     
@@ -46,7 +68,6 @@
         }
         
     ?>
-    
     <body>
         <section>
             <nav class="navbar fixed-top navbar-expand-sm" style="background-color:#C6E6F1">
@@ -124,12 +145,48 @@
                 <br>
                 <br>
                 <div class="row">
-                    <div class="col-2"></div>
-                    <div class="col-5">
-                        <p>KOST <?= $view_kost[0]['jenis'];?></p>
+                    <div class="col-1"></div>
+                    <div class="col-7">
+                        <h3>NAMA KOST</h3>
+                        <h5><?= $view_kost[0]['namakost'];?></h5>
+                        <div class="separator"></div>
+                        <br>
+                        <h3>JENIS KOST</h3>
+                        <h5><?= $view_kost[0]['jenis'];?></h5>
+                        <div class="separator"></div>
+                        <br>
+                        <h3>FASILITAS</h3>
+                        <h5><?= $view_kost[0]['fasilitas'];?></h5>
+                        <div class="separator"></div>
+                        <br>
+                        <h3>JUMLAH KAMAR TERSISA</h3>
+                        <h5><?= $view_kost[0]['jumlahkamar'];?> KAMAR</h5>
+                        <div class="separator"></div>
+                    </div>
+                    <div class="col-3">
+                        <div class="harga col-12">
+                            <h2>RP <?= $view_kost[0]['harga'];?>/TAHUN</h2>
+                            <h2>RP <?= ceil($view_kost[0]['harga']/12);?>/BULAN</h2>
+                        </div>
+                        <br>
+                        <h2>LOKASI</h2>
+                        <a target="_blank" href="https://www.google.com/maps/place/<?= $view_kost[0]['alamat'];?>"><img style="width:300px; height:200px" src="<?php echo base_url('assets/img/gmaps.jpeg')?>"></a>
+                        <h5><?= $view_kost[0]['alamat'];?></h5>
                     </div>
                 </div>
             </div>
+        </section>
+        <br>
+        <br>
+        <section>   
+            <nav class="navbar navbar-expand-lg" style="background-color:#C6E6F1">
+                <div class="collapse navbar-collapse">
+                    <a class="navbar-brand font-weight-bold" style="color: #2d5066;font-size:25px" href="#">
+                        <img src="<?php echo base_url('assets/img/logo-01.png')?>" width="50" height="50" alt="">
+                        KOST SAMBI
+                    </a>
+                </div>
+            </nav>         
         </section>
     </body>
 </html>
