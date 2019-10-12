@@ -6,6 +6,13 @@
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <style>
+            .carousel-item{
+                height: 500px;
+            }
+            .carousel-item img{
+                height: 500px;
+        </style>
     </head>
     
     <?php
@@ -74,6 +81,55 @@
                     </ul>
                 </div>
             </nav>
+        </section>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        
+        <section>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-10">
+                            <div id="kost1" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#kost1" data-slide-to="0" class="active"></li>
+                                    <li data-target="#kost1" data-slide-to="1"></li>
+                                    <li data-target="#kost1" data-slide-to="2"></li>
+                                </ol>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img class="d-block w-100" src="<?php echo base_url($view_kost[0]['foto'])?>" alt="Second slide">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100" src="<?php echo base_url('assets/img/kost2.jpg')?>" alt="Second slide">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100" src="<?php echo base_url('assets/img/kost3.jpg')?>" alt="Third slide">
+                                    </div>
+                                </div>
+                                <a class="carousel-control-prev" href="#kost1" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#kost1" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
+                </div>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-5">
+                        <p>KOST <?= $view_kost[0]['jenis'];?></p>
+                    </div>
+                </div>
+            </div>
         </section>
     </body>
 </html>

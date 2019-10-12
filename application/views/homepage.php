@@ -189,43 +189,43 @@
                                         </div>
                                         <div class="form-group text-center">
                                             <label><h6>NAMA LENGKAP</h6></label>
-                                            <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Anda">
+                                            <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Anda" required>
                                         </div>
                                         <div class="form-group text-center">
                                             <label><h6>NO IDENTITAS</h6></label>
-                                            <input type="text" class="form-control" name="noidentitas" placeholder="Masukkan No KTP/SIM">
+                                            <input type="text" class="form-control" name="noidentitas" placeholder="Masukkan No KTP/SIM" required>
                                         </div>
                                         <div class="form-group text-center">
                                             <label><h6>NO REKENING</h6></label>
-                                            <input type="text" class="form-control" name="norek" placeholder="Masukkan No Rekening">
+                                            <input type="text" class="form-control" name="norek" placeholder="Masukkan No Rekening" required>
                                         </div>
                                         <div class="form-group text-center">
                                             <label><h6>EMAIL</h6></label>
-                                            <input type="email" class="form-control" name="email" placeholder="Email">
+                                            <input type="email" class="form-control" name="email" placeholder="Email" required>
                                         </div>
                                         <div class="form-group text-center">
                                             <label><h6>USERNAME</h6></label>
-                                            <input type="text" class="form-control" name="username" placeholder="Username">
+                                            <input type="text" class="form-control" name="username" placeholder="Username" required>
                                         </div>
                                         <div class="form-group text-center">
                                             <label><h6>PASSWORD</h6></label>
-                                            <input type="password" class="form-control" id="password" name="password" onkeyup='check();' placeholder="Masukkan Password Anda">
+                                            <input type="password" class="form-control" id="password" name="password" onkeyup='check();' placeholder="Masukkan Password Anda" required>
                                         </div>
                                         <div class="form-group text-center">
                                             <label><h6>KONFIRMASI PASSWORD</h6></label>
-                                            <input type="password" id="repassword" name="repassword" onkeyup='check();' class="form-control" placeholder="Masukkan Konfirmasi Password Anda">
+                                            <input type="password" id="repassword" name="repassword" onkeyup='check();' class="form-control" placeholder="Masukkan Konfirmasi Password Anda" required>
                                             <span id='message'></span>
                                         </div>
                                         <div class="form-group text-center">
                                             <label><h6>DAFTAR SEBAGAI</h6></label>
-                                            <select class="form-control" name="sebagai" >
+                                            <select class="form-control" name="sebagai" required>
                                                 <option>PEMILIK KOST</option>
                                                 <option>PENCARI KOST</option>
                                             </select>
                                         </div>
                                         <div class="form-group text-center">
                                             <label><h6>CONTACT</h6></label>
-                                            <input type="text" class="form-control" name="contact" placeholder="Masukkan No HP Anda">
+                                            <input type="text" class="form-control" name="contact" placeholder="Masukkan No HP Anda" required>
                                         </div>
                                         <button type="submit" style="background-color:#2d5066;color :white" class="btn col-12">REGISTRASI</button>
                                     </form>

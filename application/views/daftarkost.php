@@ -74,27 +74,27 @@
                         <form action="<?php echo base_url('index.php/WebController/daftarkost_data')?>" method="post" enctype="multipart/form-data" >
                             <div class="form-group">
                                 <label><h6>Nama Kost</h6></label>
-                                <input type="text" class="form-control" placeholder="Masukkan Nama Kost" name="namakost">
+                                <input type="text" class="form-control" placeholder="Masukkan Nama Kost" name="namakost" required>
                             </div>
                             <div class="form-group">
                                 <label><h6>Kode Kost</h6></label>
-                                <input type="text" class="form-control" placeholder="Masukkan Nama Kode Kost" name="kodekost">
+                                <input type="text" class="form-control" placeholder="Masukkan Nama Kode Kost" name="kodekost" required>
                             </div>
                             <div class="form-group">
                                 <label><h6>Alamat</h6></label>
-                                <input type="text" class="form-control" placeholder="Masukkan Alamat Kost" name="alamat">
+                                <input type="text" class="form-control" placeholder="Masukkan Alamat Kost" name="alamat" required>
                             </div>
                             <div class="form-group">
                                 <label><h6>Fasilitas</h6></label>
-                                <input type="text" class="form-control" placeholder="Masukkan Fasilitas Kost" name="fasilitas">
+                                <input type="text" class="form-control" placeholder="Masukkan Fasilitas Kost" name="fasilitas" required>
                             </div>
                             <div class="form-group">
                                 <label><h6>Harga</h6></label>
-                                <input type="text" class="form-control" placeholder="Masukkan Harga Kost" name="harga">
+                                <input type="text" class="form-control" placeholder="Masukkan Harga Kost" name="harga" required>
                             </div>
                             <div class="form-group">
                                 <label><h6>Jenis Kost</h6></label>
-                                <select class="form-control" name="jeniskost" >
+                                <select class="form-control" name="jeniskost" required>
                                     <option>Laki-Laki</option>
                                     <option>Perempuan</option>
                                     <option>Campur</option>
@@ -102,7 +102,7 @@
                             </div>
                             <div class="form-group">
                                 <label><h6>Jumlah Kamar</h6></label>
-                                <input type="number" class="form-control" placeholder="Jumlah Kamar Yang Tersisa" name="jumlahkamar">
+                                <input type="number" class="form-control" placeholder="Jumlah Kamar Yang Tersisa" name="jumlahkamar" required>
                             </div>
                             <div class="form-group">
                                 <label><h6>Nama Pemilik</h6></label>
@@ -110,11 +110,11 @@
                             </div>
                             <div class="form-group">
                                 <label><h6>No Telpon</h6></label>
-                                <input type="text" class="form-control" placeholder="Masukkan No Telpon" name="contact">
+                                <input type="text" class="form-control" placeholder="Masukkan No Telpon" name="contact" required>
                             </div>
                             <div class="form-group">
                                 <label><h6>Masukkan Foto Kost</h6></label>
-                                <input type="file" name="userfile" size="100" >
+                                <input type="file" name="userfile" size="100" required >
                             </div>
                             <button type="submit" name="upload" style="background-color:#2d5066;color :white" class="btn col-12">SUBMIT</button>
                         </form>

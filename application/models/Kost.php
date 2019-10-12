@@ -36,7 +36,7 @@ class Kost extends CI_Model{
         $this->db->where('kodekost',$kodekost);
         $result = $this->db->get('kost');
         if($result->num_rows()==1){
-            return $result->row(0);
+            return $result->result_array();
         }else{
             return false;
         }
