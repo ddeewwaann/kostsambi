@@ -198,4 +198,15 @@ class WebController extends CI_Controller {
         }
         
     }
+    public function myprofile_data($table,$username){
+        if($this->session->userdata('logged_in')==1){
+            $data['profile'] = $this->Account->getakun_id($table,$username);
+            $this->load->view('myprofile',$data);
+        }
+        else{
+            $this->session->set_flashdata('daftarkost_alert', 'notlogin');
+            redirect('WebController/index');
+        }
+    }
+    
 }

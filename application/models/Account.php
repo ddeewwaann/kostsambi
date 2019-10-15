@@ -37,6 +37,17 @@ class Account extends CI_Model{
 		return $data->result_array();
 	}
     
+    public function getakun_id($table,$username){
+        $this->db->where('username',$username);
+        $result = $this->db->get($table);
+        if($result->num_rows()==1){
+            return $result->result_array();
+        }else{
+            return false;
+        }
+        
+    }
+    
     public function delete_akun($username){
         $this->db->where('username',$username);
 		return $this->db->delete('account');

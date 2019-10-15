@@ -95,6 +95,8 @@
                     $("#mykost").hide();
                 });
                 </script>';
+            $tabel = 'pencari';
+            $username = $this->session->userdata('username');
         }
         else if(($this->session->userdata('logged_in')==1) && ($this->session->userdata('role')==2)){
             echo '<script>
@@ -105,6 +107,8 @@
                     $("#mykost").show();
                 });
                 </script>';
+            $tabel = 'pemilik';
+            $username = $this->session->userdata('username');
         }
         else{
              echo '<script>
@@ -143,7 +147,8 @@
                                 HAI <?php echo $this->session->userdata('username') ?>
                                 </a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item">PROFILE</a>
+                                    
+                                    <a href="<?= base_url(); ?>index.php/WebController/myprofile_data/<?= $tabel ?>/<?= $username ?>" class="dropdown-item">PROFILE</a>
                                     <a class="dropdown-item" href="<?php echo base_url("index.php/WebController/logout")?>">LOGOUT</a>
                                 </div>
                             </div>
