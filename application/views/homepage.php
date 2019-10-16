@@ -247,7 +247,7 @@
                     <form action="<?php echo base_url('index.php/WebController/search_kost')?>" method="post">
                         <div class="form-group">
                             <label for="search" style="color:white">Pilih Kost</label>
-                            <input type="search" class="form-control" id="search" placeholder="Cari Alamat Kost Yang Diinginkan">
+                            <input type="search" class="form-control" id="search" name="keyword" placeholder="Cari Alamat Kost Yang Diinginkan">
                         </div>
                         <button type="submit" hidden>HAI</button>
                     </form>

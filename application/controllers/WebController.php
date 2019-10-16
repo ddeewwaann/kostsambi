@@ -190,7 +190,7 @@ class WebController extends CI_Controller {
     public function view_kost_pemilik($kodekost){
         if($this->session->userdata('logged_in')==1){
             $data['view_kost'] = $this->Kost->getkost_kode($kodekost);
-            $this->load->view('view_kost_pemilik',$data); 
+            $this->load->view('view_kost',$data); 
         }
         else{
             $this->session->set_flashdata('daftarkost_alert', 'notlogin');
@@ -261,8 +261,18 @@ class WebController extends CI_Controller {
     }
     
     public function search_kost(){
+        if($this->input->post('keyword')) {
+            redirect('WebController/search_kost');
+        }
         $data['kostan'] = $this->Kost->search_kost($this->input->post('keyword'));
         $this->load->view('search_kost',$data); 
     }
+    
+    public function view_kost_pencari($kodekost){
+            $data['view_kost'] = $this->Kost->getkost_kode($kodekost);
+            $this->load->view('view_kost',$data); 
+        
+    }
+        
     
 }

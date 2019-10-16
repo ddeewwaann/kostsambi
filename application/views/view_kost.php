@@ -45,8 +45,11 @@
                     $("#afterlogin").show();
                     $("#daftarkankost").hide();
                     $("#mykost").hide();
+                    $("#reservasi").show();
                 });
                 </script>';
+            $tabel = 'pencari';
+            $username = $this->session->userdata('username');
         }
         else if(($this->session->userdata('logged_in')==1) && ($this->session->userdata('role')==2)){
             echo '<script>
@@ -55,14 +58,20 @@
                     $("#afterlogin").show();
                     $("#daftarkankost").show();
                     $("#mykost").show();
+                    $("#reservasi").hide();
                 });
                 </script>';
+            $tabel = 'pemilik';
+            $username = $this->session->userdata('username');
         }
         else{
              echo '<script>
                 $(document).ready(function(){
                     $("#afterlogin").hide();
                     $("#loginbutton").show();
+                    $("#dropdown").hide();
+                    $("#loginbtn").show();
+                    $("#reservasi").show();
                 });
                 </script>';
         }
@@ -164,9 +173,10 @@
                         <div class="separator"></div>
                     </div>
                     <div class="col-3">
-                        <div class="harga col-12">
+                        <div class="harga text-center">
                             <h2>RP <?= $view_kost[0]['harga'];?>/TAHUN</h2>
                             <h2>RP <?= ceil($view_kost[0]['harga']/12);?>/BULAN</h2>
+                            <a><button class="btn btn-secondary" id="reservasi" style="width:300px;background-color:#2d5066">RESERVASI</button></a>
                         </div>
                         <br>
                         <h2>LOKASI</h2>

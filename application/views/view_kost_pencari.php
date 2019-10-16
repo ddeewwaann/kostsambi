@@ -6,31 +6,6 @@
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        
-        <style>
-            .card{
-                border-color: #2d5066;
-            }
-            .card-header{
-                background-color: #2d5066;
-                color: white;
-            }
-            .btn{
-                color: #2d5066;
-                font-size: 20px;
-            }
-            .foto{
-                width: 50px;
-                height: 100px;
-            }
-            .content{
-                font-size: 35px;
-            }
-            .header1{
-                border-bottom-width: 0px;
-            }
-        </style>
-        
     </head>
     
     <?php
@@ -111,39 +86,8 @@
         <br>
         <br>
         <br>
-        <br>    
         <section>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-3">
-                    </div>
-                    <div class="col-7">
-                        <?php foreach ($kostan as $kst) : ?>
-                            <div class="card">
-                                <div class="card-header">
-                                    <div class="row">
-                                        <div class="col-9">
-                                            <h5><?= $kst['namakost'];?></h5>
-                                        </div>
-                                        <div class="col-3">
-                                            <h5><?= $kst['harga'];?> /Tahun</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title"><?= $kst['alamat'];?></h5>
-                                    <div class="row">
-                                        <img class="col-3 foto" src="<?php echo base_url($kst['foto'])?>">
-                                        <a class="btn col-3 content" href="<?= base_url(); ?>index.php/WebController/view_kost_pencari/<?=$kst['kodekost'] ?>">VIEW</a>
-                                        <a class="btn col-3 content" href="">RESERVASI</a>
-                                    </div>
-                                </div>
-                            </div>
-                        <br>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-            </div>
+            
         </section>
     </body>
 </html>
