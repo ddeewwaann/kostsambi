@@ -12,6 +12,7 @@
                 color: #2d5066;
             }
         </style>
+        
     </head>
     
     <?php
@@ -24,7 +25,6 @@
                     $("#mykost").hide();
                 });
                 </script>';
-            $table = 'pencari';
             $tabel = 'pencari';
             $username = $this->session->userdata('username');
         }
@@ -37,7 +37,6 @@
                     $("#mykost").show();
                 });
                 </script>';
-            $table = 'pemilik';
             $tabel = 'pemilik';
             $username = $this->session->userdata('username');
         }
@@ -98,88 +97,118 @@
         <br>
         <br>
         <br>
-        <br>
         <section>
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-3">
                         <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src="<?php echo base_url('assets/img/hmm.png')?>" alt="Card image cap">
+                            <img class="card-img-top" src="<?php echo base_url($kostan[0]['foto'])?>" alt="Card image cap">
                             <div class="card-body">
-                                <h5 class="card-title text-center"><?= $profile[0]['nama'];?></h5>
+                                <h5 class="card-title text-center"><?= $kostan[0]['namakost'];?></h5>
                             </div>
                         </div>
                     </div>
                     <div class="col-9">
-                        <form action="<?php echo base_url('index.php/WebController/update_profile')?>" method="post">
-                            <div class="form-group text-center">
+                        <form action="<?php echo base_url('index.php/WebController/update_kost')?>" method="post">
+                            <div class="form-group">
                                 <div class="row">
                                     <div class="col-3">
-                                        <label><h3>NAMA LENGKAP</h3></label>
+                                        <label><h3>Nama Kost</h3></label>
                                     </div>
-                                    <div class="col-8">
-                                        <input type="text" class="form-control" name="nama" value="<?= $profile[0]['nama'];?>" required>
+                                    <div class="col-9">
+                                        <input type="text" class="form-control" value="<?= $kostan[0]['namakost'];?>" name="namakost" required>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group text-center">
+                            <div class="form-group">
                                 <div class="row">
                                     <div class="col-3">
-                                        <label><h3>NO IDENTITAS</h3></label>
+                                        <label><h3>Kode Kost</h3></label>
                                     </div>
-                                    <div class="col-8">
-                                        <input type="text" class="form-control" name="noidentitas" value="<?= $profile[0]['noidentitas'];?>" required>
+                                    <div class="col-9">
+                                        <input type="text" class="form-control" value="<?= $kostan[0]['kodekost'];?>"  name="kodekost" required readonly>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group text-center">
+                            <div class="form-group">
                                 <div class="row">
                                     <div class="col-3">
-                                        <label><h3>USERNAME</h3></label>
+                                        <label><h3>Alamat</h3></label>
                                     </div>
-                                    <div class="col-8">
-                                        <input type="text" class="form-control" name="username" value="<?= $profile[0]['username'];?>" required readonly>
+                                    <div class="col-9">
+                                        <input type="text" class="form-control" value="<?= $kostan[0]['alamat'];?>"  name="alamat" required>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group text-center">
+                            <div class="form-group">
                                 <div class="row">
                                     <div class="col-3">
-                                        <label><h3>EMAIL</h3></label>
+                                        <label><h3>Fasilitas</h3></label>
                                     </div>
-                                    <div class="col-8">
-                                        <input type="email" class="form-control" name="email" value="<?= $profile[0]['email'];?>" required readonly>
+                                    <div class="col-9">
+                                        <input type="text" class="form-control" value="<?= $kostan[0]['fasilitas'];?>" name="fasilitas" required>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group text-center">
+                            <div class="form-group">
                                 <div class="row">
                                     <div class="col-3">
-                                        <label><h3>NO REKENING</h3></label>
+                                        <label><h3>Harga</h3></label>
                                     </div>
-                                    <div class="col-8">
-                                        <input type="text" class="form-control" name="norek" value="<?= $profile[0]['norekening'];?>" required>
+                                    <div class="col-9">
+                                        <input type="text" class="form-control" value="<?= $kostan[0]['harga'];?>"  name="harga" required>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group text-center">
+                            <div class="form-group">
                                 <div class="row">
                                     <div class="col-3">
-                                        <label><h3>CONTACT</h3></label>
+                                        <label><h3>Jenis Kost</h3></label>
                                     </div>
-                                    <div class="col-8">
-                                        <input type="text" class="form-control" name="contact" value="<?= $profile[0]['contact'];?>" required>
-                                        <input type="text" class="form-control" name="table" value="<?= $table ?>" hidden>
+                                    <div class="col-9">
+                                        <select class="form-control" name="jeniskost" required>
+                                        <option selected><?= $kostan[0]['jenis'];?></option>
+                                        <option>Laki-Laki</option>
+                                        <option>Perempuan</option>
+                                        <option>Campur</option>
+                                </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <label><h3>Jumlah Kamar</h3></label>
+                                    </div>
+                                    <div class="col-9">
+                                        <input type="number" class="form-control" value="<?= $kostan[0]['jumlahkamar'];?>"  name="jumlahkamar" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <label><h3>Nama Pemilik</h3></label>
+                                    </div>
+                                    <div class="col-9">
+                                        <input type="text" class="form-control" placeholder="<?php echo $this->session->userdata('username') ?>" name="namapemilik" value="<?php echo $this->session->userdata('username') ?>" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <label><h3>No Telpon</h3></label>
+                                    </div>
+                                    <div class="col-9">
+                                        <input type="text" class="form-control" value="<?= $kostan[0]['contact'];?>" placeholder="Masukkan No Telpon" name="contact" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-4"></div>
+                                <div class="col-6"></div>
                                 <div class="col-3">
                                     <button type="submit" style="background-color:#2d5066;color :white" class="btn col-12">UPDATE</button>
-                                </div>
-                                <div class="col-3">
-                                    <a><button type="submit" style="background-color:#2d5066;color :white" class="btn col-12">CHANGE PASSWORD</button></a>
                                 </div>
                             </div>
                         </form>

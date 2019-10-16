@@ -74,7 +74,7 @@
     ?>
     <?php 
         if ($this->session->flashdata('daftarkost_alert')=='notlogin'){
-            echo "<script>alert('Silahkan melakukan login terlebih dahulu sebagai pemilik');</script>";
+            echo "<script>alert('Silahkan melakukan login terlebih dahulu ');</script>";
         }
     ?>
     <?php 
@@ -244,11 +244,12 @@
         <section>
             <div class="jumbotron jumbotron-fluid jumbo1">
                 <div class="container rounded display-4 search" style="background-color:#2d5066">
-                    <form>
+                    <form action="" method="post">
                         <div class="form-group">
                             <label for="search" style="color:white">Pilih Kost</label>
-                            <input type="search" class="form-control" id="search" placeholder="Cari Kost Yang Diinginkan">
+                            <input type="search" class="form-control" id="search" placeholder="Cari Alamat Kost Yang Diinginkan">
                         </div>
+                        <button type="submit" hidden>HAI</button>
                     </form>
                 </div>
             </div>

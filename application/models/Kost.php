@@ -45,5 +45,22 @@ class Kost extends CI_Model{
         $this->db->where('kodekost',$kodekost);
 		return $this->db->delete('kost');
     }
+    
+    function update_kost($kodekost,$data){
+        $this->db->where('kodekost', $kodekost);
+        $update = $this->db->update('kost',$data);
+        if ($update){
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+    }
+    
+    function search_kost($data){
+        $this->db->like('alamat ',$data);
+        $query  =   $this->db->get('kost');
+        return $query->result_array();
+    }
+    
 }
 ?>

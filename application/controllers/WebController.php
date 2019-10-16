@@ -208,5 +208,56 @@ class WebController extends CI_Controller {
             redirect('WebController/index');
         }
     }
+    public function editkost($kodekost){
+        if($this->session->userdata('logged_in')==1){
+            $data['kostan'] = $this->Kost->getkost_kode($kodekost);
+            $this->load->view('editkost',$data);
+        }
+        else{
+            $this->session->set_flashdata('daftarkost_alert', 'notlogin');
+            redirect('WebController/index');
+        }
+    }
+    
+    public function update_kost(){
+        $data_update = array(
+            "namakost"=> $this->input->post('namakost',true),
+            "kodekost"=> $this->input->post('kodekost',true),
+            "alamat"=> $this->input->post('alamat',true),
+            "fasilitas" => $this->input->post('fasilitas',true),
+            "harga"=> $this->input->post('harga',true),
+            "jenis"=> $this->input->post('jeniskost',true),
+            "jumlahkamar"=>$this->input->post('jumlahkamar','true'),
+            "namapemilik"=> $this->input->post('namapemilik', true),
+            "contact" => $this->input->post('contact',true)
+        );
+        $kodekost = $this->input->post('kodekost',true);
+        $update = $this->Kost->update_kost($kodekost,$data_update);
+        if($update){
+            $this->session->set_flashdata('update_alert', 'update_berhasil');
+            redirect('WebController/editkost/'.$kodekost);
+        }else{
+            $this->session->set_flashdata('update_alert', 'update_gagal');
+            redirect('WebController/editkost/'.$kodekost);
+        }
+    }
+    
+    public function update_profile(){
+        $table = $this->input->post('table');
+        $data_update = array (
+            'nama' => $this->input->post('nama'),
+            'noidentitas'=> $this->input->post('noidentitas'),
+            'norekening'=> $this->input->post('norek'),
+            'contact'=>$this->input->post('contact')
+        );
+        $update = $this->Account->update_profile($table,$this->session->userdata('username'),$data_update);
+        if($update){
+            $this->session->set_flashdata('update_alert', 'update_berhasil');
+            redirect('WebController/myprofile_data/'.$table.'/'.$this->session->userdata('username'));
+        }else{
+            $this->session->set_flashdata('update_alert', 'update_gagal');
+            redirect('WebController/myprofile_data/'.$table.'/'.$this->session->userdata('username'));
+        }
+    }
     
 }

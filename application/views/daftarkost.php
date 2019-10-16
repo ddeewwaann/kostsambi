@@ -26,6 +26,42 @@
         }
     ?>
     
+    <?php
+        if(($this->session->userdata('logged_in')==1) && ($this->session->userdata('role')==1)){
+            echo '<script>
+                $(document).ready(function(){
+                    $("#loginbutton").hide();
+                    $("#afterlogin").show();
+                    $("#daftarkankost").hide();
+                    $("#mykost").hide();
+                });
+                </script>';
+            $tabel = 'pencari';
+            $username = $this->session->userdata('username');
+        }
+        else if(($this->session->userdata('logged_in')==1) && ($this->session->userdata('role')==2)){
+            echo '<script>
+                $(document).ready(function(){
+                    $("#loginbutton").hide();
+                    $("#afterlogin").show();
+                    $("#daftarkankost").show();
+                    $("#mykost").show();
+                });
+                </script>';
+            $tabel = 'pemilik';
+            $username = $this->session->userdata('username');
+        }
+        else{
+             echo '<script>
+                $(document).ready(function(){
+                    $("#afterlogin").hide();
+                    $("#loginbutton").show();
+                });
+                </script>';
+        }
+        
+    ?>
+    
     <body>
         <section>
             <nav class="navbar fixed-top navbar-expand-sm" style="background-color:#2d5066">
@@ -50,7 +86,7 @@
                                 HAI <?php echo $this->session->userdata('username') ?>
                                 </a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item">PROFILE</a>
+                                    <a class="dropdown-item" href="<?= base_url(); ?>index.php/WebController/myprofile_data/<?= $tabel ?>/<?= $username ?>">PROFILE</a>
                                     <a class="dropdown-item" href="<?php echo base_url("index.php/WebController/logout")?>">LOGOUT</a>
                                 </div>
                             </div>

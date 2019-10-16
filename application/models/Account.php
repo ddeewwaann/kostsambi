@@ -52,6 +52,16 @@ class Account extends CI_Model{
         $this->db->where('username',$username);
 		return $this->db->delete('account');
     }
+    
+    function update_profile($table,$username,$data){
+        $this->db->where('username', $username);
+        $update = $this->db->update($table,$data);
+        if ($update){
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+    }
 
 }
 
