@@ -244,7 +244,7 @@
         <section>
             <div class="jumbotron jumbotron-fluid jumbo1">
                 <div class="container rounded display-4 search" style="background-color:#2d5066">
-                    <form action="" method="post">
+                    <form action="<?php echo base_url('index.php/WebController/search_kost')?>" method="post">
                         <div class="form-group">
                             <label for="search" style="color:white">Pilih Kost</label>
                             <input type="search" class="form-control" id="search" placeholder="Cari Alamat Kost Yang Diinginkan">

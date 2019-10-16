@@ -260,4 +260,9 @@ class WebController extends CI_Controller {
         }
     }
     
+    public function search_kost(){
+        $data['kostan'] = $this->Kost->search_kost($this->input->post('keyword'));
+        $this->load->view('search_kost',$data); 
+    }
+    
 }
