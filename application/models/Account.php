@@ -21,6 +21,7 @@ class Account extends CI_Model{
             return false;
         }
     }
+    
     function login($username,$password){
         $this->db->where('username',$username);
         $this->db->where('password',$password);

@@ -37,6 +37,12 @@
         </style>
     </head>
     
+    <?php 
+        if($this->session->flashdata('reservasi_alert')=='notlogin'){
+            echo "<script>alert('Silahkan Login Terlebih Dahulu');</script>";
+        }
+    ?>
+    
     <?php
         if(($this->session->userdata('logged_in')==1) && ($this->session->userdata('role')==1)){
             echo '<script>
@@ -46,6 +52,7 @@
                     $("#daftarkankost").hide();
                     $("#mykost").hide();
                     $("#reservasi").show();
+                    $("#kode").hide();
                 });
                 </script>';
             $tabel = 'pencari';
@@ -59,6 +66,7 @@
                     $("#daftarkankost").show();
                     $("#mykost").show();
                     $("#reservasi").hide();
+                    $("#kode").show();
                 });
                 </script>';
             $tabel = 'pemilik';
@@ -72,6 +80,7 @@
                     $("#dropdown").hide();
                     $("#loginbtn").show();
                     $("#reservasi").show();
+                    $("#kode").hide();
                 });
                 </script>';
         }
@@ -95,7 +104,7 @@
                             <a class="nav-link font-weight-bold" id="mykost" href="<?php echo base_url('index.php/WebController/mykost')?>" style="color: #2d5066;font-size:18px">MY KOST</a>
                         </li>
                         <li class="nav-item" id="loginbutton">
-                            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCenter"  style="background-color: #d66565;">LOGIN</button>
+                            <a href="<?php echo base_url('index.php/WebController/index')?>"><button type="button" class="btn btn-secondary" style="background-color: #d66565;">LOGIN</button></a>
                         </li>
                         <li class="nav-item" id="afterlogin">
                             <div class="dropdown">
@@ -160,6 +169,12 @@
                         <h5><?= $view_kost[0]['namakost'];?></h5>
                         <div class="separator"></div>
                         <br>
+                        <div id="kode">
+                            <h3>KODE KOST</h3>
+                            <h5><?= $view_kost[0]['kodekost'];?></h5>
+                            <div class="separator"></div>
+                        </div>
+                        <br>
                         <h3>JENIS KOST</h3>
                         <h5><?= $view_kost[0]['jenis'];?></h5>
                         <div class="separator"></div>
@@ -176,7 +191,7 @@
                         <div class="harga text-center">
                             <h2>RP <?= $view_kost[0]['harga'];?>/TAHUN</h2>
                             <h2>RP <?= ceil($view_kost[0]['harga']/12);?>/BULAN</h2>
-                            <a><button class="btn btn-secondary" id="reservasi" style="width:300px;background-color:#2d5066">RESERVASI</button></a>
+                            <a><button class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCenter" id="reservasi" style="width:300px;background-color:#2d5066">RESERVASI</button></a>
                         </div>
                         <br>
                         <h2>LOKASI</h2>
@@ -188,6 +203,34 @@
         </section>
         <br>
         <br>
+        <section>
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background-color:#2d5066;color:white">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Silahkan Transfer Ke Kost Sambi Dengan Rekening 1301174134 Sebesar RP <?= ceil($view_kost[0]['harga']/12);?> </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="" method="post">
+                                <div class="form-group">
+                                    <h6><label>Silahkan Upload Bukti Pembayaran</label></h6>
+                                    <input type="file" name="userfile" size="100" required >
+                                    <input type="text" name="username" value="<?= $this->session->userdata('username'); ?>" hidden>
+                                    <input type="text" name="kodekost" value="<?= $view_kost[0]['kodekost'];?>" hidden>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" style="background-color:#2d5066" class="btn btn-primary">RESERVASI</button>
+                            <button type="button" style="background-color:#2d5066" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <section>   
             <nav class="navbar navbar-expand-lg" style="background-color:#C6E6F1">
                 <div class="collapse navbar-collapse">

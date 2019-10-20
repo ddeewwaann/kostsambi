@@ -6,6 +6,7 @@ class WebController extends CI_Controller {
         parent::__construct();
         $this->load->model('Account');
         $this->load->model('Kost');
+        $this->load->model('Reservasi');
         $this->load->helper(array('form', 'url'));
     }
 	public function index()
@@ -58,7 +59,8 @@ class WebController extends CI_Controller {
             $sess_data = array(
             'logged_in' => 1,
             'username' => $ceklogin->username,
-            'role' => $ceklogin->role
+            'role' => $ceklogin->role,
+            'password'=> $ceklogin->password
             );
             if($role=='3'){
                 $this->session->set_userdata($sess_data);
@@ -158,10 +160,18 @@ class WebController extends CI_Controller {
             "contact" => $this->input->post('contact',true),
             "foto"=> $path
         );
+        $kodekost = $this->input->post('kodekost',true);
+        $cekkost = $this->Kost->cek_kost($kodekost);
         if($cek){
-            $this->Kost->daftarkost($data);
-            $this->session->set_flashdata('daftarkost_alert', 'berhasil');
-            redirect('WebController/daftarkost');
+            if ($cekkost){
+                $this->session->set_flashdata('daftarkost_alert', 'kode');
+                redirect('WebController/daftarkost');
+            }else{
+                $this->Kost->daftarkost($data);
+                $this->session->set_flashdata('daftarkost_alert', 'berhasil');
+                redirect('WebController/daftarkost');
+                
+            }
         }
         else{
             $this->session->set_flashdata('daftarkost_alert', 'gagal');
@@ -272,6 +282,68 @@ class WebController extends CI_Controller {
             $data['view_kost'] = $this->Kost->getkost_kode($kodekost);
             $this->load->view('view_kost',$data); 
         
+    }
+    
+    public function change_password(){
+        if($this->session->userdata('logged_in')==1){
+            $this->load->view('change_password');
+        }
+        else{
+            $this->session->set_flashdata('daftarkost_alert', 'notlogin');
+            redirect('WebController/index');
+        }
+    }
+    
+    public function change_password_data(){
+        $passwordbaru = md5($this->input->post('passwordbaru'));
+        $passwordlama = md5($this->input->post('passwordlama'));
+        $repassword = md5($this->input->post('repassword'));
+        $table = $this->input->post('table');
+        $akun = 'account';
+        $cekpassword = $this->session->userdata('password');
+        $data_update = array (
+            'password' => $passwordbaru
+        );
+        if($passwordlama == $cekpassword){
+            if($passwordbaru == $repassword){
+                $update = $this->Account->update_profile($akun,$this->session->userdata('username'),$data_update);
+                $update2 = $this->Account->update_profile($table,$this->session->userdata('username'),$data_update);
+                $this->session->set_flashdata('password_alert', 'berhasil');
+                redirect('WebController/myprofile_data/'.$table.'/'.$this->session->userdata('username'));
+            }else{
+                $this->session->set_flashdata('password_alert', 'repass');
+                redirect('WebController/change_password');
+            }
+        }else{
+            $this->session->set_flashdata('password_alert', 'oldpass');
+            redirect('WebController/change_password');
+        }
+    }
+    
+    public function add_reservasi(){
+        if($this->session->userdata('logged_in')==1){
+            $config['upload_path']          =  './reservasi/';
+            $config['allowed_types']        =  'jpg|png';
+            $config['max_size']             =  2048;
+            $config['max_width']            =  5000;
+            $config['max_height']           = 5000;
+        
+            $this->load->library('upload',$config);
+            $cek = $this->upload->do_upload('userfile');
+            $content = $this->upload->data();
+            $path = "reservasi/".$content["file_name"];
+            
+            $data = array(
+            "username"=> $this->input->post('username',true),
+            "kodekost"=> $this->input->post('kodekost',true),
+            "foto"=> $path
+        );
+            
+        }
+        else{
+            $this->session->set_flashdata('reservasi_alert', 'notlogin');
+            redirect('WebController/index');
+        }
     }
         
     

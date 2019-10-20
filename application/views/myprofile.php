@@ -56,6 +56,9 @@
         if ($this->session->flashdata('update_alert')=='update_berhasil'){
             echo "<script>alert('Data Updated');</script>";
         }
+        else if($this->session->flashdata('password_alert')=='berhasil'){
+            echo "<script>alert('Password Updated');</script>";
+        }
     ?>
     
     <body>
@@ -112,7 +115,7 @@
                     </div>
                     <div class="col-9">
                         <form action="<?php echo base_url('index.php/WebController/update_profile')?>" method="post">
-                            <div class="form-group text-center">
+                            <div class="form-group text-center container-fluid">
                                 <div class="row">
                                     <div class="col-3">
                                         <label><h3>NAMA LENGKAP</h3></label>
@@ -122,7 +125,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group text-center">
+                            <div class="form-group text-center container-fluid">
                                 <div class="row">
                                     <div class="col-3">
                                         <label><h3>NO IDENTITAS</h3></label>
@@ -132,7 +135,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group text-center">
+                            <div class="form-group text-center container-fluid">
                                 <div class="row">
                                     <div class="col-3">
                                         <label><h3>USERNAME</h3></label>
@@ -142,7 +145,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group text-center">
+                            <div class="form-group text-center container-fluid">
                                 <div class="row">
                                     <div class="col-3">
                                         <label><h3>EMAIL</h3></label>
@@ -152,7 +155,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group text-center">
+                            <div class="form-group text-center container-fluid">
                                 <div class="row">
                                     <div class="col-3">
                                         <label><h3>NO REKENING</h3></label>
@@ -162,7 +165,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group text-center">
+                            <div class="form-group text-center container-fluid">
                                 <div class="row">
                                     <div class="col-3">
                                         <label><h3>CONTACT</h3></label>
@@ -179,7 +182,7 @@
                                     <button type="submit" style="background-color:#2d5066;color :white" class="btn col-12">UPDATE</button>
                                 </div>
                                 <div class="col-3">
-                                    <a><button type="submit" style="background-color:#2d5066;color :white" class="btn col-12">CHANGE PASSWORD</button></a>
+                                    <a href="<?php echo base_url('index.php/WebController/change_password')?>" style="background-color:#2d5066;color :white" class="btn col-12">CHANGE PASSWORD</a>
                                 </div>
                             </div>
                         </form>

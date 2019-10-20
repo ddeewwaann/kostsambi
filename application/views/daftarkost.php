@@ -24,6 +24,9 @@
         else if($this->session->flashdata('daftarkost_alert')=='gagal'){
             echo "<script>alert('Upload Foto Gagal,Silahkan Daftar Kembali');</script>";
         }
+        else if($this->session->flashdata('daftarkost_alert')=='kode'){
+            echo "<script>alert('Duplicate Kode Kost');</script>";
+        }
     ?>
     
     <?php

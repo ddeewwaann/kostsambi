@@ -64,7 +64,6 @@
                     $("#afterlogin").hide();
                     $("#loginbutton").show();
                     $("#dropdown").hide();
-                    $("#loginbtn").show();
                 });
                 </script>';
         }
@@ -89,7 +88,7 @@
                         <li class="nav-item">
                             <a class="nav-link font-weight-bold" id="mykost" href="<?php echo base_url('index.php/WebController/mykost')?>" style="color: white;font-size:18px">MY KOST</a>
                         </li>
-                        <li class="nav-item" id="loginbtn">
+                        <li class="nav-item" id="loginbutton">
                             <a href="<?php echo base_url("index.php/WebController/index")?>"><button class="btn btn-secondary" style="background-color: #d66565; height:45px;width:100px;font-size:15px;">LOGIN</button></a>
                         </li>
                         <li class="nav-item row">

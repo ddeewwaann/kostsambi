@@ -62,5 +62,16 @@ class Kost extends CI_Model{
         return $query->result_array();
     }
     
+    function cek_kost($kodekost){
+        $this->db->where('kodekost',$kodekost);
+        $cek = $this->db->get('kost')->result_array();
+        if(isset($cek[0])){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
 }
 ?>
