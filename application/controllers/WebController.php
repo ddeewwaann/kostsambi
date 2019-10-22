@@ -50,6 +50,11 @@ class WebController extends CI_Controller {
         $data['kost'] = $this->Kost->getkost($kost);
         $this->load->view('admin_listkost',$data);
     }
+     public function admin_reservasi(){
+        $reservasi = 'reservasi';
+        $data['reservasi'] = $this->Reservasi->get_reservasi($reservasi);
+        $this->load->view('admin_reservasi',$data);
+    }
     public function login_data(){
         $username = $this->input->post('username');
         $password = md5($this->input->post('password'));
@@ -60,13 +65,21 @@ class WebController extends CI_Controller {
             'logged_in' => 1,
             'username' => $ceklogin->username,
             'role' => $ceklogin->role,
-            'password'=> $ceklogin->password
+            'password'=> $ceklogin->password,
             );
             if($role=='3'){
                 $this->session->set_userdata($sess_data);
                 redirect('WebController/admin');
             }
             else{
+                if($role=='1'){
+                    $table = 'pencari';
+                    $cekmail = $this->Account->get_akun2($table,$username);
+                    $email_data = array(
+                        'email' => $cekmail->email
+                    );
+                    $this->session->set_userdata($email_data);
+                }
                 $this->session->set_userdata($sess_data);
                 $this->session->set_flashdata('login_alert', 'login_berhasil');
                 redirect('WebController/index');
@@ -336,15 +349,76 @@ class WebController extends CI_Controller {
             $data = array(
             "username"=> $this->input->post('username',true),
             "kodekost"=> $this->input->post('kodekost',true),
+            "nominalreservasi"=> $this->input->post('nominal',true),
+            "email"=>$this->input->post('email',true),
             "foto"=> $path
         );
-            
+            if($cek){
+                $this->Reservasi->add_reservasi($data);
+                $this->session->set_flashdata('reservasi_alert', 'berhasil');
+                redirect('WebController/view_kost_pencari/'.$this->input->post('kodekost'));
+            }
+            else{
+                
+            }
         }
         else{
             $this->session->set_flashdata('reservasi_alert', 'notlogin');
             redirect('WebController/index');
         }
     }
+    
+    public function validasi_reservasi($email){
+        if($this->session->userdata('logged_in')==1){
+            $to = $email;
+            $subject = 'VALIDASI RESERVASI';
+            $from = 'muhammad.dsatriakamal@gmail.com';
+            $message = 'SELAMAT RESERVASI ANDA TELAH TERVALIDASI, SCREENSHOOT PESAN INI UNTUK MENJADI BUKTI ANDA SUDAH RESERVASI KEPADA PEMILIK';
+            
+//            $emailContent = '<!DOCTYPE><html><head></head><body><table width="600px" style="border:1px solid #cccccc;margin: auto;border-spacing:0;"><tr><td style="background:#000000;padding-left:3%"><img src="http://codingmantra.co.in/assets/logo/logo.png" width="300px" vspace=10 /></td></tr>';
+//            $emailContent .='<tr><td style="height:20px"></td></tr>';
+
+
+            $emailContent = $message;  //   Post message available here
+
+
+//            $emailContent .='<tr><td style="height:20px"></td></tr>';
+//            $emailContent .= "<tr><td style='background:#000000;color: #999999;padding: 2%;text-align: center;font-size: 13px;'><p style='margin-top:1px;'><a href='http://codingmantra.co.in/' target='_blank' style='text-decoration:none;color: #60d2ff;'>www.codingmantra.co.in</a></p></td></tr></table></body></html>"; 
+            
+            $config['protocol']    = 'smtp';
+            $config['smtp_host']    = 'ssl://smtp.gmail.com';
+            $config['smtp_port']    = '465';
+            $config['smtp_timeout'] = '60';
+
+            $config['smtp_user']    = 'official.kostsambi@gmail.com';    //Important
+            $config['smtp_pass']    = 'inikostsambi';  //Important
+
+            $config['charset']    = 'utf-8';
+            $config['newline']    = "\r\n";
+            $config['mailtype'] = 'html'; // or html
+            $config['validation'] = TRUE; // bool whether to validate email or not 
+
+     
+
+            $this->email->initialize($config);
+            $this->email->set_mailtype("html");
+            $this->email->from($from);
+            $this->email->to($to);
+            $this->email->subject($subject);
+            $this->email->message($emailContent);
+            $this->email->send();
+            
+            $this->session->set_flashdata('reservasi_alert', 'berhasil');
+            redirect('WebController/admin_reservasi');
+        }
+        else{
+            $this->session->set_flashdata('reservasi_alert', 'notlogin');
+            redirect('WebController/index');
+        }
+    }
+    
+
+}
         
     
-}
+

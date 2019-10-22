@@ -12,6 +12,11 @@ class Reservasi extends CI_Model{
         }
     }
     
+    public function get_reservasi($table)
+	{
+        $data = $this->db->get($table);
+		return $data->result_array();
+	}
 
 }
 

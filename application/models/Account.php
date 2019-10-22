@@ -32,6 +32,18 @@ class Account extends CI_Model{
             return false;
         }
     }
+    
+    public function get_akun2($table,$username){
+        $this->db->where('username',$username);
+        $result = $this->db->get($table);
+        if($result->num_rows()==1){
+            return $result->row(0);
+        }else{
+            return false;
+        }
+        
+    }
+    
     public function getakun($table)
 	{
         $data = $this->db->get($table);

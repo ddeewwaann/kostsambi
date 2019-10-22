@@ -41,6 +41,9 @@
         if($this->session->flashdata('reservasi_alert')=='notlogin'){
             echo "<script>alert('Silahkan Login Terlebih Dahulu');</script>";
         }
+        else if($this->session->flashdata('reservasi_alert')=='berhasil'){
+            echo "<script>alert('Reservasi Sedang di Verifikasi, Notifikasi Akan Dikirimkan Lewat Email');</script>";
+        }
     ?>
     
     <?php
@@ -214,18 +217,19 @@
                                 </button>
                         </div>
                         <div class="modal-body">
-                            <form action="" method="post">
+                            <form action="<?php echo base_url('index.php/WebController/add_reservasi')?>" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <h6><label>Silahkan Upload Bukti Pembayaran</label></h6>
-                                    <input type="file" name="userfile" size="100" required >
                                     <input type="text" name="username" value="<?= $this->session->userdata('username'); ?>" hidden>
+                                    <input type="text" name="email" value="<?= $this->session->userdata('email'); ?>" hidden>
                                     <input type="text" name="kodekost" value="<?= $view_kost[0]['kodekost'];?>" hidden>
+                                    <input type="text" name="nominal" value="<?= ceil($view_kost[0]['harga']/12);?>" hidden>
+                                    <input type="file" name="userfile" size="100" required >
                                 </div>
+                                <button type="button" style="background-color:#2d5066;float:right;border-color:white" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" name="upload" style="background-color:#2d5066;color :white; float:right;border-color:white" class="btn btn-primary">SUBMIT</button>
+                               
                             </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" style="background-color:#2d5066" class="btn btn-primary">RESERVASI</button>
-                            <button type="button" style="background-color:#2d5066" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>

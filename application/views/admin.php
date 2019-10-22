@@ -67,6 +67,7 @@
                             <a href="<?php echo base_url("index.php/WebController/admin")?>" class="list-group-item list-group-item-action aa">PENCARI</a>
                             <a href="<?php echo base_url("index.php/WebController/admin_pemilik")?>" class="list-group-item list-group-item-action aa">PEMILIK</a>
                             <a href="<?php echo base_url("index.php/WebController/admin_listkost")?>" class="list-group-item list-group-item-action aa">LIST KOST</a>
+                            <a href="<?php echo base_url("index.php/WebController/admin_reservasi")?>" class="list-group-item list-group-item-action aa">LIST RESERVASI</a>
                         </div>
                 </div>
                 <div class="container-fluid">

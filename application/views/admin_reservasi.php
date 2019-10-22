@@ -30,6 +30,16 @@
             $('#table').DataTable();
         } );
     </script>
+    
+    <?php 
+        if($this->session->flashdata('reservasi_alert')=='notlogin'){
+            echo "<script>alert('Silahkan Login Terlebih Dahulu');</script>";
+        }
+        else if($this->session->flashdata('reservasi_alert')=='berhasil'){
+            echo "<script>alert('Reservasi Sedang di Verifikasi, Notifikasi Akan Dikirimkan Lewat Email');</script>";
+        }
+    ?>
+    
     <body>
         <section>
             <nav class="navbar fixed-top navbar-expand-sm" style="background-color:#2d5066">
@@ -54,7 +64,6 @@
                             </div>
                             <img class="col-6" style="width:60px";height="60px" src="<?php echo base_url('assets/img/user.png')?>">
                         </li>
-                        
                     </ul>
             </nav>
         </section>
@@ -74,40 +83,52 @@
                     <h1 class="mt-4">hai</h1>
                     <br><br>
                     <div class="row">
-                        <div class="col-11">
+                        <div class="col-12">
                             <table class="table display" id="table">
                                 <thead style="background-color:#2d5066;color:white">
                                     <tr>
-                                        <th scope="col">NAMA KOST</th>
+                                        <th scope="col">FOTO</th>
+                                        <th scope="col">NO</th>
+                                        <th scope="col">USERNAME PENCARI</th>
+                                        <th scope="col">EMAIL PENCARI</th>
                                         <th scope="col">KODE KOST</th>
-                                        <th scope="col">ALAMAT</th>
-                                        <th scope="col">FASILITAS</th>
-                                        <th scope="col">HARGA</th>
-                                        <th scope="col">JENIS</th>
-                                        <th scope="col">PEMILIK</th>
-                                        <th scope="col">CONTACT</th>
+                                        <th scope="col">NOMINAL</th>
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <?php foreach ($kost as $kst) : ?>
-                                                <td><?= $kst['namakost'];?></td>
-                                                <td><?= $kst['kodekost'];?></td>
-                                                <td><?= $kst['alamat'];?></td>
-                                                <td><?= $kst['fasilitas'];?></td>
-                                                <td><?= $kst['harga'];?></td>
-                                                <td><?= $kst['jenis'];?></td>
-                                                <td><?= $kst['namapemilik'];?></td>
-                                                <td><?= $kst['contact'];?></td>
-                                                <td><a href="<?= base_url(); ?>index.php/WebController/delete_kost/<?=$kst['kodekost'] ?>" class="badge badge-danger float-center" onclick="return confirm('Apakah anda yakin menghapus data ini?');" ?>hapus</a></td>
-                                        
+                                        <?php foreach ($reservasi as $rsv) : ?>
+                                                <td><button><img style="height:100px;width:200px;" src="<?php echo base_url($rsv['foto'])?>" data-toggle="modal" data-target="#exampleModalCenter"></button></td>
+                                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-       labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered modal-lg " role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLongTitle">BUKTI TRANSFER</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                            <img style="height:500px;width:750px;"  src="<?php echo base_url($rsv['foto'])?>">
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <td><?= $rsv['no'];?></td>
+                                                <td><?= $rsv['username'];?></td>
+                                                <td><?= $rsv['email'];?></td>
+                                                <td><?= $rsv['kodekost'];?></td>
+                                                <td><?= $rsv['nominalreservasi'];?></td>
+                                                <td><a href="<?= base_url(); ?>index.php/WebController/validasi_reservasi/<?=$rsv['email']; ?>" class="badge badge-danger float-center" onclick="return confirm('Apakah anda yakin menghapus data ini?');" ?>VALIDASI</a></td>
                                     </tr>
                                         <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
-                        
                     </div>
                 </div>
             </div>
