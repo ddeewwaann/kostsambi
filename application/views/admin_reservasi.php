@@ -92,6 +92,7 @@
                                         <th scope="col">USERNAME PENCARI</th>
                                         <th scope="col">EMAIL PENCARI</th>
                                         <th scope="col">KODE KOST</th>
+                                        <th scope="col">SISA KAMAR</th>
                                         <th scope="col">NOMINAL</th>
                                         <th scope="col"></th>
                                     </tr>
@@ -122,8 +123,9 @@
                                                 <td><?= $rsv['username'];?></td>
                                                 <td><?= $rsv['email'];?></td>
                                                 <td><?= $rsv['kodekost'];?></td>
+                                                <td><?= $rsv['jumlahkamar'];?></td>
                                                 <td><?= $rsv['nominalreservasi'];?></td>
-                                                <td><a href="<?= base_url(); ?>index.php/WebController/validasi_reservasi/<?=$rsv['email']; ?>" class="badge badge-danger float-center" onclick="return confirm('Apakah anda yakin menghapus data ini?');" ?>VALIDASI</a></td>
+                                                <td><a href="<?= base_url(); ?>index.php/WebController/validasi_reservasi/<?=$rsv['email']; ?>/<?= $rsv['kodekost'];?>/<?= $rsv['no'];?>/<?= $rsv['jumlahkamar'];?>" class="badge badge-danger float-center" onclick="return confirm('Apakah anda yakin menghapus data ini?');" ?>VALIDASI</a></td>
                                     </tr>
                                         <?php endforeach; ?>
                                 </tbody>

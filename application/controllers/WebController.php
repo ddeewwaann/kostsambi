@@ -349,6 +349,7 @@ class WebController extends CI_Controller {
             $data = array(
             "username"=> $this->input->post('username',true),
             "kodekost"=> $this->input->post('kodekost',true),
+            "jumlahkamar"=> $this->input->post('jumlahkamar',true),
             "nominalreservasi"=> $this->input->post('nominal',true),
             "email"=>$this->input->post('email',true),
             "foto"=> $path
@@ -368,7 +369,7 @@ class WebController extends CI_Controller {
         }
     }
     
-    public function validasi_reservasi($email){
+    public function validasi_reservasi($email,$kodekost,$no,$jumlahkamar){
         if($this->session->userdata('logged_in')==1){
             $to = $email;
             $subject = 'VALIDASI RESERVASI';
@@ -407,6 +408,13 @@ class WebController extends CI_Controller {
             $this->email->subject($subject);
             $this->email->message($emailContent);
             $this->email->send();
+            
+            $data_update = array(
+            "jumlahkamar"=> $jumlahkamar-1
+            );
+            $update = $this->Kost->update_kost($kodekost,$data_update);
+            $this->Reservasi->delete_reservasi($no);
+            
             
             $this->session->set_flashdata('reservasi_alert', 'berhasil');
             redirect('WebController/admin_reservasi');

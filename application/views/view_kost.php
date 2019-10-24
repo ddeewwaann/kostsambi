@@ -224,6 +224,7 @@
                                     <input type="text" name="email" value="<?= $this->session->userdata('email'); ?>" hidden>
                                     <input type="text" name="kodekost" value="<?= $view_kost[0]['kodekost'];?>" hidden>
                                     <input type="text" name="nominal" value="<?= ceil($view_kost[0]['harga']/12);?>" hidden>
+                                    <input type="text" name="jumlahkamar" value="<?= $view_kost[0]['jumlahkamar'];?>" hidden>
                                     <input type="file" name="userfile" size="100" required >
                                 </div>
                                 <button type="button" style="background-color:#2d5066;float:right;border-color:white" class="btn btn-secondary" data-dismiss="modal">Close</button>
