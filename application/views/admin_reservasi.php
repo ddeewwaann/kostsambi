@@ -36,7 +36,7 @@
             echo "<script>alert('Silahkan Login Terlebih Dahulu');</script>";
         }
         else if($this->session->flashdata('reservasi_alert')=='berhasil'){
-            echo "<script>alert('Reservasi Sedang di Verifikasi, Notifikasi Akan Dikirimkan Lewat Email');</script>";
+            echo "<script>alert('Reservasi Telah Tervalidasi);</script>";
         }
     ?>
     
@@ -73,10 +73,10 @@
                     <div class="sidebar-heading ">Start Bootstrap </div>
                         <div class="list-group list-group-flush">
                             <a href="#" class="list-group-item list-group-item-action aa">Dashboard</a>
-                            <a href="<?php echo base_url("index.php/WebController/admin")?>" class="list-group-item list-group-item-action aa">PENCARI</a>
-                            <a href="<?php echo base_url("index.php/WebController/admin_pemilik")?>" class="list-group-item list-group-item-action aa">PEMILIK</a>
-                            <a href="<?php echo base_url("index.php/WebController/admin_listkost")?>" class="list-group-item list-group-item-action aa">LIST KOST</a>
-                            <a href="<?php echo base_url("index.php/WebController/admin_reservasi")?>" class="list-group-item list-group-item-action aa">LIST RESERVASI</a>
+                            <a href="<?php echo base_url("index.php/AdminController/admin")?>" class="list-group-item list-group-item-action aa">PENCARI</a>
+                            <a href="<?php echo base_url("index.php/AdminController/admin_pemilik")?>" class="list-group-item list-group-item-action aa">PEMILIK</a>
+                            <a href="<?php echo base_url("index.php/AdminController/admin_listkost")?>" class="list-group-item list-group-item-action aa">LIST KOST</a>
+                            <a href="<?php echo base_url("index.php/AdminController/admin_reservasi")?>" class="list-group-item list-group-item-action aa">LIST RESERVASI</a>
                         </div>
                 </div>
                 <div class="container-fluid">
@@ -125,7 +125,7 @@
                                                 <td><?= $rsv['kodekost'];?></td>
                                                 <td><?= $rsv['jumlahkamar'];?></td>
                                                 <td><?= $rsv['nominalreservasi'];?></td>
-                                                <td><a href="<?= base_url(); ?>index.php/WebController/validasi_reservasi/<?=$rsv['email']; ?>/<?= $rsv['kodekost'];?>/<?= $rsv['no'];?>/<?= $rsv['jumlahkamar'];?>" class="badge badge-danger float-center" onclick="return confirm('Apakah anda yakin menghapus data ini?');" ?>VALIDASI</a></td>
+                                                <td><a href="<?= base_url(); ?>index.php/AdminController/validasi_reservasi/<?=$rsv['email']; ?>/<?= $rsv['kodekost'];?>/<?= $rsv['no'];?>/<?= $rsv['jumlahkamar'];?>" class="badge badge-danger float-center" onclick="return confirm('Apakah anda yakin menghapus data ini?');" ?>VALIDASI</a></td>
                                     </tr>
                                         <?php endforeach; ?>
                                 </tbody>

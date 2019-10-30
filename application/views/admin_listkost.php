@@ -64,10 +64,10 @@
                     <div class="sidebar-heading ">Start Bootstrap </div>
                         <div class="list-group list-group-flush">
                             <a href="#" class="list-group-item list-group-item-action aa">Dashboard</a>
-                            <a href="<?php echo base_url("index.php/WebController/admin")?>" class="list-group-item list-group-item-action aa">PENCARI</a>
-                            <a href="<?php echo base_url("index.php/WebController/admin_pemilik")?>" class="list-group-item list-group-item-action aa">PEMILIK</a>
-                            <a href="<?php echo base_url("index.php/WebController/admin_listkost")?>" class="list-group-item list-group-item-action aa">LIST KOST</a>
-                            <a href="<?php echo base_url("index.php/WebController/admin_reservasi")?>" class="list-group-item list-group-item-action aa">LIST RESERVASI</a>
+                            <a href="<?php echo base_url("index.php/AdminController/admin")?>" class="list-group-item list-group-item-action aa">PENCARI</a>
+                            <a href="<?php echo base_url("index.php/AdminController/admin_pemilik")?>" class="list-group-item list-group-item-action aa">PEMILIK</a>
+                            <a href="<?php echo base_url("index.php/AdminController/admin_listkost")?>" class="list-group-item list-group-item-action aa">LIST KOST</a>
+                            <a href="<?php echo base_url("index.php/AdminController/admin_reservasi")?>" class="list-group-item list-group-item-action aa">LIST RESERVASI</a>
                         </div>
                 </div>
                 <div class="container-fluid">
@@ -100,7 +100,7 @@
                                                 <td><?= $kst['jenis'];?></td>
                                                 <td><?= $kst['namapemilik'];?></td>
                                                 <td><?= $kst['contact'];?></td>
-                                                <td><a href="<?= base_url(); ?>index.php/WebController/delete_kost/<?=$kst['kodekost'] ?>" class="badge badge-danger float-center" onclick="return confirm('Apakah anda yakin menghapus data ini?');" ?>hapus</a></td>
+                                                <td><a href="<?= base_url(); ?>index.php/AdminController/delete_kost/<?=$kst['kodekost'] ?>" class="badge badge-danger float-center" onclick="return confirm('Apakah anda yakin menghapus data ini?');" ?>hapus</a></td>
                                         
                                     </tr>
                                         <?php endforeach; ?>

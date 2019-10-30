@@ -153,7 +153,12 @@
                             </div>
                             <div class="form-group">
                                 <label><h6>Masukkan Foto Kost</h6></label>
+                                <br>
                                 <input type="file" name="userfile" size="100" required >
+                                <br>
+                                <input type="file" name="userfile2" size="100" required >
+                                <br>
+                                <input type="file" name="userfile3" size="100" required >
                             </div>
                             <button type="submit" name="upload" style="background-color:#2d5066;color :white" class="btn col-12">SUBMIT</button>
                         </form>

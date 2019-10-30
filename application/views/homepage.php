@@ -84,6 +84,12 @@
             echo "<script>alert('Login Gagal, username atau password salah');</script>";
         }
     ?>
+
+    <?php 
+        if ($this->session->flashdata('reservasi_alert')=='notlogin'){
+            echo "<script>alert('Silahkan Login Terlebih Dahulu');</script>";
+        }
+    ?>
     
     <?php
         if(($this->session->userdata('logged_in')==1) && ($this->session->userdata('role')==1)){

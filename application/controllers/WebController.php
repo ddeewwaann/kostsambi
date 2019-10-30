@@ -35,26 +35,7 @@ class WebController extends CI_Controller {
             redirect('WebController/index');
         }
     }
-    public function admin(){
-        $pencari = 'pencari';
-        $data['pencari'] = $this->Account->getakun($pencari);
-        $this->load->view('admin',$data);
-    }
-    public function admin_pemilik(){
-        $pemilik = 'pemilik';
-        $data['pemilik'] = $this->Account->getakun($pemilik);
-        $this->load->view('admin_pemilik',$data);
-    }
-    public function admin_listkost(){
-        $kost = 'kost';
-        $data['kost'] = $this->Kost->getkost($kost);
-        $this->load->view('admin_listkost',$data);
-    }
-     public function admin_reservasi(){
-        $reservasi = 'reservasi';
-        $data['reservasi'] = $this->Reservasi->get_reservasi($reservasi);
-        $this->load->view('admin_reservasi',$data);
-    }
+    
     public function login_data(){
         $username = $this->input->post('username');
         $password = md5($this->input->post('password'));
@@ -69,7 +50,7 @@ class WebController extends CI_Controller {
             );
             if($role=='3'){
                 $this->session->set_userdata($sess_data);
-                redirect('WebController/admin');
+                redirect('AdminController/admin');
             }
             else{
                 if($role=='1'){
@@ -161,6 +142,15 @@ class WebController extends CI_Controller {
         $cek = $this->upload->do_upload('userfile');
         $content = $this->upload->data();
         $path = "upload/".$content["file_name"];
+
+        $cek2 = $this->upload->do_upload('userfile2');
+        $content2 = $this->upload->data();
+        $path2 = "upload/".$content2["file_name"];
+
+        $cek3 = $this->upload->do_upload('userfile3');
+        $content3 = $this->upload->data();
+        $path3 = "upload/".$content3["file_name"];
+
         $data = array(
             "namakost"=> $this->input->post('namakost',true),
             "kodekost"=> $this->input->post('kodekost',true),
@@ -171,11 +161,13 @@ class WebController extends CI_Controller {
             "jumlahkamar"=>$this->input->post('jumlahkamar','true'),
             "namapemilik"=> $this->input->post('namapemilik', true),
             "contact" => $this->input->post('contact',true),
-            "foto"=> $path
+            "foto"=> $path,
+            "foto2"=> $path2,
+            "foto3"=> $path3
         );
         $kodekost = $this->input->post('kodekost',true);
         $cekkost = $this->Kost->cek_kost($kodekost);
-        if($cek){
+        if($cek && $cek2 && $cek3){
             if ($cekkost){
                 $this->session->set_flashdata('daftarkost_alert', 'kode');
                 redirect('WebController/daftarkost');
@@ -193,17 +185,7 @@ class WebController extends CI_Controller {
          
     }
     
-    public function delete_akun($username)
-	{
-        $this->Account->delete_akun($username);
-		redirect('WebController/admin');
-	}
     
-    public function delete_kost($kodekost)
-	{
-        $this->Kost->delete_kost($kodekost);
-		redirect('webController/admin_listkost');
-	}
     
     public function delete_mykost($kodekost)
 	{
@@ -354,13 +336,15 @@ class WebController extends CI_Controller {
             "email"=>$this->input->post('email',true),
             "foto"=> $path
         );
-            if($cek){
+            $jumlahkamar = $this->input->post('jumlahkamar',true);
+            if(($cek) && ($jumlahkamar>0)){
                 $this->Reservasi->add_reservasi($data);
                 $this->session->set_flashdata('reservasi_alert', 'berhasil');
                 redirect('WebController/view_kost_pencari/'.$this->input->post('kodekost'));
             }
             else{
-                
+                $this->session->set_flashdata('reservasi_alert', 'gagal');
+                redirect('WebController/view_kost_pencari/'.$this->input->post('kodekost'));
             }
         }
         else{
@@ -369,61 +353,7 @@ class WebController extends CI_Controller {
         }
     }
     
-    public function validasi_reservasi($email,$kodekost,$no,$jumlahkamar){
-        if($this->session->userdata('logged_in')==1){
-            $to = $email;
-            $subject = 'VALIDASI RESERVASI';
-            $from = 'muhammad.dsatriakamal@gmail.com';
-            $message = 'SELAMAT RESERVASI ANDA TELAH TERVALIDASI, SCREENSHOOT PESAN INI UNTUK MENJADI BUKTI ANDA SUDAH RESERVASI KEPADA PEMILIK';
-            
-//            $emailContent = '<!DOCTYPE><html><head></head><body><table width="600px" style="border:1px solid #cccccc;margin: auto;border-spacing:0;"><tr><td style="background:#000000;padding-left:3%"><img src="http://codingmantra.co.in/assets/logo/logo.png" width="300px" vspace=10 /></td></tr>';
-//            $emailContent .='<tr><td style="height:20px"></td></tr>';
-
-
-            $emailContent = $message;  //   Post message available here
-
-
-//            $emailContent .='<tr><td style="height:20px"></td></tr>';
-//            $emailContent .= "<tr><td style='background:#000000;color: #999999;padding: 2%;text-align: center;font-size: 13px;'><p style='margin-top:1px;'><a href='http://codingmantra.co.in/' target='_blank' style='text-decoration:none;color: #60d2ff;'>www.codingmantra.co.in</a></p></td></tr></table></body></html>"; 
-            
-            $config['protocol']    = 'smtp';
-            $config['smtp_host']    = 'ssl://smtp.gmail.com';
-            $config['smtp_port']    = '465';
-            $config['smtp_timeout'] = '60';
-
-            $config['smtp_user']    = 'official.kostsambi@gmail.com';    //Important
-            $config['smtp_pass']    = 'inikostsambi';  //Important
-
-            $config['charset']    = 'utf-8';
-            $config['newline']    = "\r\n";
-            $config['mailtype'] = 'html'; // or html
-            $config['validation'] = TRUE; // bool whether to validate email or not 
-
-     
-
-            $this->email->initialize($config);
-            $this->email->set_mailtype("html");
-            $this->email->from($from);
-            $this->email->to($to);
-            $this->email->subject($subject);
-            $this->email->message($emailContent);
-            $this->email->send();
-            
-            $data_update = array(
-            "jumlahkamar"=> $jumlahkamar-1
-            );
-            $update = $this->Kost->update_kost($kodekost,$data_update);
-            $this->Reservasi->delete_reservasi($no);
-            
-            
-            $this->session->set_flashdata('reservasi_alert', 'berhasil');
-            redirect('WebController/admin_reservasi');
-        }
-        else{
-            $this->session->set_flashdata('reservasi_alert', 'notlogin');
-            redirect('WebController/index');
-        }
-    }
+    
     
 
 }

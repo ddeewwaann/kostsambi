@@ -44,6 +44,9 @@
         else if($this->session->flashdata('reservasi_alert')=='berhasil'){
             echo "<script>alert('Reservasi Sedang di Verifikasi, Notifikasi Akan Dikirimkan Lewat Email');</script>";
         }
+        else if($this->session->flashdata('reservasi_alert')=='gagal'){
+            echo "<script>alert('Reservasi Gagal, Silahkan Cek Kembali Ketersediaan Kamar');</script>";
+        }
     ?>
     
     <?php
@@ -124,13 +127,11 @@
                 </div>
             </nav>
         </section>
+      
         <br>
         <br>
         <br>
-        <br>
-        <br>
-        
-        <section>
+        <section class="mt-5">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-1"></div>
@@ -146,10 +147,10 @@
                                         <img class="d-block w-100" src="<?php echo base_url($view_kost[0]['foto'])?>" alt="Second slide">
                                     </div>
                                     <div class="carousel-item">
-                                        <img class="d-block w-100" src="<?php echo base_url('assets/img/kost2.jpg')?>" alt="Second slide">
+                                        <img class="d-block w-100" src="<?php echo base_url($view_kost[0]['foto2'])?>" alt="Second slide">
                                     </div>
                                     <div class="carousel-item">
-                                        <img class="d-block w-100" src="<?php echo base_url('assets/img/kost3.jpg')?>" alt="Third slide">
+                                        <img class="d-block w-100" src="<?php echo base_url($view_kost[0]['foto3'])?>" alt="Third slide">
                                     </div>
                                 </div>
                                 <a class="carousel-control-prev" href="#kost1" role="button" data-slide="prev">

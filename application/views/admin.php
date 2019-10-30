@@ -64,10 +64,10 @@
                     <div class="sidebar-heading ">Start Bootstrap </div>
                         <div class="list-group list-group-flush">
                             <a href="#" class="list-group-item list-group-item-action aa">Dashboard</a>
-                            <a href="<?php echo base_url("index.php/WebController/admin")?>" class="list-group-item list-group-item-action aa">PENCARI</a>
-                            <a href="<?php echo base_url("index.php/WebController/admin_pemilik")?>" class="list-group-item list-group-item-action aa">PEMILIK</a>
-                            <a href="<?php echo base_url("index.php/WebController/admin_listkost")?>" class="list-group-item list-group-item-action aa">LIST KOST</a>
-                            <a href="<?php echo base_url("index.php/WebController/admin_reservasi")?>" class="list-group-item list-group-item-action aa">LIST RESERVASI</a>
+                            <a href="<?php echo base_url("index.php/AdminController/admin")?>" class="list-group-item list-group-item-action aa">PENCARI</a>
+                            <a href="<?php echo base_url("index.php/AdminController/admin_pemilik")?>" class="list-group-item list-group-item-action aa">PEMILIK</a>
+                            <a href="<?php echo base_url("index.php/AdminController/admin_listkost")?>" class="list-group-item list-group-item-action aa">LIST KOST</a>
+                            <a href="<?php echo base_url("index.php/AdminController/admin_reservasi")?>" class="list-group-item list-group-item-action aa">LIST RESERVASI</a>
                         </div>
                 </div>
                 <div class="container-fluid">
@@ -97,7 +97,7 @@
                                                 <td><?= $pcr['username'];?></td>
                                                 <td><?= $pcr['norekening'];?></td>
                                                 <td><?= $pcr['contact'];?></td>
-                                                <td><a href="<?= base_url(); ?>index.php/WebController/delete_akun/<?=$pcr['username'] ?>" class="badge badge-danger float-center" onclick="return confirm('Apakah anda yakin menghapus data ini?');" ?>hapus</a></td>
+                                                <td><a href="<?= base_url(); ?>index.php/AdminController/delete_akun/<?=$pcr['username'] ?>/pencari" class="badge badge-danger float-center" onclick="return confirm('Apakah anda yakin menghapus data ini?');" ?>hapus</a></td>
                                     </tr>
                                         <?php endforeach; ?>
                                 </tbody>
