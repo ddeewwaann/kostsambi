@@ -115,7 +115,7 @@
                         <li class="nav-item" id="afterlogin">
                             <div class="dropdown">
                                 <a class="dropdown-toggle btn btn-secondary" style="background-color: #d66565;" data-toggle="dropdown">
-                                HAI <?php echo $this->session->userdata('username') ?>
+                                 <?php echo $this->session->userdata('username') ?>
                                 </a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item">PROFILE</a>
@@ -213,7 +213,7 @@
                     <div class="modal-content">
                         <div class="modal-header" style="background-color:#2d5066;color:white">
                             <h5 class="modal-title" id="exampleModalLongTitle">Silahkan Transfer Ke Kost Sambi Dengan Rekening 1301174134 Sebesar RP <?= ceil($view_kost[0]['harga']/12);?> </h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <button type="button" class="close"  data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
                         </div>

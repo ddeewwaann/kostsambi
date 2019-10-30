@@ -15,7 +15,7 @@ class WebController extends CI_Controller {
 	}
     public function daftarkost()
     {
-        if($this->session->userdata('logged_in')==1){
+        if($this->session->userdata('logged_in')==1 && $this->session->userdata('role')==2){
           $this->load->view('daftarkost');  
         }
         else{
@@ -25,7 +25,7 @@ class WebController extends CI_Controller {
         
     }
     public function mykost(){
-        if($this->session->userdata('logged_in')==1){
+        if($this->session->userdata('logged_in')==1 && $this->session->userdata('role')==2){
             $username = $this->session->userdata('username');
             $data['kost'] = $this->Kost->getkost_id($username);
             $this->load->view('mykost',$data); 
@@ -204,7 +204,7 @@ class WebController extends CI_Controller {
         
     }
     public function myprofile_data($table,$username){
-        if($this->session->userdata('logged_in')==1){
+        if($this->session->userdata('logged_in')==1 && ($this->session->userdata('role')==1 || $this->session->userdata('role')==2)){
             $data['profile'] = $this->Account->getakun_id($table,$username);
             $this->load->view('myprofile',$data);
         }
@@ -316,7 +316,7 @@ class WebController extends CI_Controller {
     }
     
     public function add_reservasi(){
-        if($this->session->userdata('logged_in')==1){
+        if($this->session->userdata('logged_in')==1 && $this->session->userdata('role')==1){
             $config['upload_path']          =  './reservasi/';
             $config['allowed_types']        =  'jpg|png';
             $config['max_size']             =  2048;

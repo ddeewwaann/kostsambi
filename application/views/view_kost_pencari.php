@@ -70,7 +70,7 @@
                         <li class="nav-item row">
                             <div class="dropdown col-6" id="dropdown">
                                 <a class="dropdown-toggle btn btn-secondary" style="background-color: #d66565; height:50px;width:80px;font-size:15px;" data-toggle="dropdown">
-                                HAI <?php echo $this->session->userdata('username') ?>
+                                 <?php echo $this->session->userdata('username') ?>
                                 </a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="">PROFILE</a>

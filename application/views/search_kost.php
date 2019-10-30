@@ -94,7 +94,7 @@
                         <li class="nav-item row">
                             <div class="dropdown col-6" id="dropdown">
                                 <a class="dropdown-toggle btn btn-secondary" style="background-color: #d66565; height:50px;width:80px;font-size:15px;" data-toggle="dropdown">
-                                HAI <?php echo $this->session->userdata('username') ?>
+                                <?php echo $this->session->userdata('username') ?>
                                 </a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="">PROFILE</a>
@@ -134,11 +134,41 @@
                                     <div class="row">
                                         <img class="col-3 foto" src="<?php echo base_url($kst['foto'])?>">
                                         <a class="btn col-3 content" href="<?= base_url(); ?>index.php/WebController/view_kost_pencari/<?=$kst['kodekost'] ?>">VIEW</a>
-                                        <a class="btn col-3 content" href="">RESERVASI</a>
+                                        <a class="btn col-3 content" data-toggle="modal" data-target="#exampleModalCenter">RESERVASI</a>
                                     </div>
                                 </div>
                             </div>
                         <br>
+                        <section>
+                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header" style="background-color:#2d5066;color:white">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Silahkan Transfer Ke Kost Sambi Dengan Rekening 1301174134 Sebesar RP <?= ceil($kst['harga']/12);?> </h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                                </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="<?php echo base_url('index.php/WebController/add_reservasi')?>" method="post" enctype="multipart/form-data">
+                                                <div class="form-group">
+                                                    <h6><label>Silahkan Upload Bukti Pembayaran</label></h6>
+                                                    <input type="text" name="username" value="<?= $this->session->userdata('username'); ?>" hidden>
+                                                    <input type="text" name="email" value="<?= $this->session->userdata('email'); ?>" hidden>
+                                                    <input type="text" name="kodekost" value="<?= $kst['kodekost'];?>" hidden>
+                                                    <input type="text" name="nominal" value="<?= ceil($kst['harga']/12);?>" hidden>
+                                                    <input type="text" name="jumlahkamar" value="<?= $kst['jumlahkamar'];?>" hidden>
+                                                    <input type="file" name="userfile" size="100" required >
+                                                </div>
+                                                <button type="button" style="background-color:#2d5066;float:right;border-color:white;color:white" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" name="upload" style="background-color:#2d5066;color :white; float:right;border-color:white" class="btn btn-primary">SUBMIT</button>
+                                            
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
                         <?php endforeach; ?>
                     </div>
                 </div>

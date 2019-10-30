@@ -80,7 +80,7 @@
                         <li class="nav-item" id="afterlogin">
                             <div class="dropdown">
                                 <a class="dropdown-toggle btn btn-secondary" style="background-color: #d66565;" data-toggle="dropdown">
-                                HAI <?php echo $this->session->userdata('username') ?>
+                                <?php echo $this->session->userdata('username') ?>
                                 </a>
                                 <div class="dropdown-menu">
                                     <a href="<?= base_url(); ?>index.php/WebController/myprofile_data/<?= $tabel ?>/<?= $username ?>" class="dropdown-item">PROFILE</a>

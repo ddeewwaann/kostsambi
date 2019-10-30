@@ -99,6 +99,7 @@
                     $("#afterlogin").show();
                     $("#daftarkankost").hide();
                     $("#mykost").hide();
+                    $("#admin").hide();
                 });
                 </script>';
             $tabel = 'pencari';
@@ -111,6 +112,20 @@
                     $("#afterlogin").show();
                     $("#daftarkankost").show();
                     $("#mykost").show();
+                    $("#admin").hide();
+                });
+                </script>';
+            $tabel = 'pemilik';
+            $username = $this->session->userdata('username');
+        }
+        else if(($this->session->userdata('logged_in')==1) && ($this->session->userdata('role')==3)){
+            echo '<script>
+                $(document).ready(function(){
+                    $("#loginbutton").hide();
+                    $("#afterlogin").show();
+                    $("#daftarkankost").hide();
+                    $("#mykost").hide();
+                    $("#profile").hide();
                 });
                 </script>';
             $tabel = 'pemilik';
@@ -148,13 +163,15 @@
                         </li>
                         <li class="nav-item" id="afterlogin">
                             <div class="dropdown">
-                                <a class="dropdown-toggle btn btn-secondary" style="background-color: #d66565;" data-toggle="dropdown">
-                                HAI <?php echo $this->session->userdata('username') ?>
+                                <a class="dropdown-toggle btn btn-secondary" style="background-color: #d66565;height:50px;width:80px;font-size:15px;" data-toggle="dropdown">
+                                    <?php echo $this->session->userdata('username') ?>
                                 </a>
                                 <div class="dropdown-menu">
                                     
-                                    <a href="<?= base_url(); ?>index.php/WebController/myprofile_data/<?= $tabel ?>/<?= $username ?>" class="dropdown-item">PROFILE</a>
+                                    <a id="profile" href="<?= base_url(); ?>index.php/WebController/myprofile_data/<?= $tabel ?>/<?= $username ?>" class="dropdown-item">PROFILE</a>
+                                    <a id="admin" class="dropdown-item" href="<?php echo base_url("index.php/AdminController/admin")?>">ADMIN</a>
                                     <a class="dropdown-item" href="<?php echo base_url("index.php/WebController/logout")?>">LOGOUT</a>
+                                    
                                 </div>
                             </div>
                         </li>
