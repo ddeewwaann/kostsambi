@@ -22,6 +22,7 @@
                     $("#afterlogin").show();
                     $("#daftarkankost").hide();
                     $("#mykost").hide();
+                    $("#admin").hide();
                 });
                 </script>';
             $tabel = 'pencari';
@@ -34,6 +35,7 @@
                     $("#afterlogin").show();
                     $("#daftarkankost").show();
                     $("#mykost").show();
+                    $("#admin").hide();
                 });
                 </script>';
             $tabel = 'pemilik';
@@ -73,13 +75,16 @@
     
     <body>
         <section>
-            <nav class="navbar fixed-top navbar-expand-sm" style="background-color:#76c2d6">
-                <div class="collapse navbar-collapse">
-                    <a class="navbar-brand font-weight-bold" style="color: #2d5066;font-size:25px" href="<?php echo base_url('')?>">
-                        <img src="<?php echo base_url('assets/img/logo-01.png')?>" width="50" height="50" alt="">
-                        KOST SAMBI
-                    </a>
-                    <ul class="navbsar-nav mr-auto ">
+        <nav class="navbar fixed-top navbar-expand-lg" style="background-color:#76c2d6">
+                <a class="navbar-brand font-weight-bold" style="color: #2d5066;font-size:25px" href="<?php echo base_url('')?>">
+                    <img src="<?php echo base_url('assets/img/logo-01.png')?>" width="50" height="50" alt="">
+                    KOST SAMBI
+                </a>
+                <button style="background-color:#2d5066"  class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto ">
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
@@ -93,13 +98,15 @@
                         </li>
                         <li class="nav-item" id="afterlogin">
                             <div class="dropdown">
-                                <a class="dropdown-toggle btn btn-secondary" style="background-color: #d66565;" data-toggle="dropdown">
-                                <?php echo $this->session->userdata('username') ?>
+                                <a class="dropdown-toggle btn btn-secondary" style="background-color: #d66565;height:50px;width:80px;font-size:15px;" data-toggle="dropdown">
+                                    <?php echo $this->session->userdata('username') ?>
                                 </a>
                                 <div class="dropdown-menu">
                                     
-                                    <a href="<?= base_url(); ?>index.php/WebController/myprofile_data/<?= $tabel ?>/<?= $username ?>" class="dropdown-item">PROFILE</a>
+                                    <a id="profile" href="<?= base_url(); ?>index.php/WebController/myprofile_data/<?= $tabel ?>/<?= $username ?>" class="dropdown-item">PROFILE</a>
+                                    <a id="admin" class="dropdown-item" href="<?php echo base_url("index.php/AdminController/admin")?>">ADMIN</a>
                                     <a class="dropdown-item" href="<?php echo base_url("index.php/WebController/logout")?>">LOGOUT</a>
+                                    
                                 </div>
                             </div>
                         </li>

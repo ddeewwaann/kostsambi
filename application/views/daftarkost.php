@@ -57,6 +57,7 @@
         else{
              echo '<script>
                 $(document).ready(function(){
+                    $("#imgp").hide();
                     $("#afterlogin").hide();
                     $("#loginbutton").show();
                 });
@@ -67,15 +68,17 @@
     
     <body>
         <section>
-            <nav class="navbar fixed-top navbar-expand-sm" style="background-color:#2d5066">
-                <div class="collapse navbar-collapse">
-                    <a class="navbar-brand font-weight-bold" style="color: white;font-size:25px" href="<?php echo base_url('')?>">
+            <nav class="navbar fixed-top navbar-expand-lg" style="background-color:#2d5066">
+                <a class="navbar-brand font-weight-bold" style="color: white;font-size:25px" href="<?php echo base_url('')?>">
                         <img src="<?php echo base_url('assets/img/logoputih.png')?>" width="50" height="50" alt="">
                         KOST SAMBI
-                    </a>
-                </div>
-                <ul class="navbar-nav mr-auto ">
-                </ul>
+                </a>
+                <button style="background-color:white"  class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto ">
+                    </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link font-weight-bold" id="daftarkankost" href="<?php echo base_url('index.php/WebController/daftarkost')?>" style="color: white;font-size:18px">DAFTARKAN KOST</a>
@@ -83,8 +86,11 @@
                         <li class="nav-item">
                             <a class="nav-link font-weight-bold" id="mykost" href="<?php echo base_url('index.php/WebController/mykost')?>" style="color: white;font-size:18px">MY KOST</a>
                         </li>
+                        <li class="nav-item" id="loginbutton">
+                            <a href="<?php echo base_url("index.php/WebController/index")?>"><button class="btn btn-secondary" style="background-color: #d66565; height:45px;width:100px;font-size:15px;">LOGIN</button></a>
+                        </li>
                         <li class="nav-item row">
-                            <div class="dropdown col-6">
+                            <div class="dropdown col-6" id="dropdown">
                                 <a class="dropdown-toggle btn btn-secondary" style="background-color: #d66565; height:50px;width:80px;font-size:15px;" data-toggle="dropdown">
                                 <?php echo $this->session->userdata('username') ?>
                                 </a>
@@ -93,10 +99,10 @@
                                     <a class="dropdown-item" href="<?php echo base_url("index.php/WebController/logout")?>">LOGOUT</a>
                                 </div>
                             </div>
-                            <img class="col-6" style="width:60px";height="60px" src="<?php echo base_url('assets/img/user.png')?>">
+                            <img id="imgp" class="col-6" style="width:60px";height="60px" src="<?php echo base_url('assets/img/user.png')?>">
                         </li>
-                        
                     </ul>
+                </div>
             </nav>
         </section>
         <br>

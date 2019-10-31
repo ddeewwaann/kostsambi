@@ -1,11 +1,11 @@
 <html>
     <head>
         <title>Hanya Di Kost Sambi</title>
-        <link rel="shortcut icon" href="<?php echo base_url('assets/img/logo-01.png')?>" type="image/x-icon">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <link rel="shortcut icon" href="<?php echo base_url('assets/img/logo-01.png')?>" type="image/x-icon">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <style>
             .jumbo1{
                 background-image : url('<?php echo base_url('assets/img/tampilan1-01.jpg')?>');
@@ -128,8 +128,6 @@
                     $("#profile").hide();
                 });
                 </script>';
-            $tabel = 'pemilik';
-            $username = $this->session->userdata('username');
         }
         else{
              echo '<script>
@@ -140,16 +138,18 @@
                 </script>';
         }
     ?>
-    
     <body>
         <section>
-            <nav class="navbar fixed-top navbar-expand-sm" style="background-color:#76c2d6">
-                <div class="collapse navbar-collapse">
-                    <a class="navbar-brand font-weight-bold" style="color: #2d5066;font-size:25px" href="<?php echo base_url('')?>">
-                        <img src="<?php echo base_url('assets/img/logo-01.png')?>" width="50" height="50" alt="">
-                        KOST SAMBI
-                    </a>
-                    <ul class="navbsar-nav mr-auto ">
+            <nav class="navbar fixed-top navbar-expand-lg" style="background-color:#76c2d6">
+                <a class="navbar-brand font-weight-bold" style="color: #2d5066;font-size:25px" href="<?php echo base_url('')?>">
+                    <img src="<?php echo base_url('assets/img/logo-01.png')?>" width="50" height="50" alt="">
+                    KOST SAMBI
+                </a>
+                <button style="background-color:#2d5066"  class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto ">
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">

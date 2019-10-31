@@ -92,15 +92,20 @@
         }
         
     ?>
+    
+    
     <body>
         <section>
-            <nav class="navbar fixed-top navbar-expand-sm" style="background-color:#C6E6F1">
-                <div class="collapse navbar-collapse">
-                    <a class="navbar-brand font-weight-bold" style="color: #2d5066;font-size:25px" href="<?php echo base_url('')?>">
+            <nav class="navbar fixed-top navbar-expand-lg" style="background-color:#C6E6F1">
+                <a class="navbar-brand font-weight-bold" style="color: #2d5066;font-size:25px" href="<?php echo base_url('')?>">
                         <img src="<?php echo base_url('assets/img/logo-01.png')?>" width="50" height="50" alt="">
                         KOST SAMBI
-                    </a>
-                    <ul class="navbsar-nav mr-auto ">
+                </a>
+                <button style="background-color:#2d5066"  class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto ">
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
@@ -110,18 +115,19 @@
                             <a class="nav-link font-weight-bold" id="mykost" href="<?php echo base_url('index.php/WebController/mykost')?>" style="color: #2d5066;font-size:18px">MY KOST</a>
                         </li>
                         <li class="nav-item" id="loginbutton">
-                            <a href="<?php echo base_url('index.php/WebController/index')?>"><button type="button" class="btn btn-secondary" style="background-color: #d66565;">LOGIN</button></a>
+                            <a href="<?php echo base_url("index.php/WebController/index")?>"><button class="btn btn-secondary" style="background-color: #d66565; height:45px;width:100px;font-size:15px;">LOGIN</button></a>
                         </li>
-                        <li class="nav-item" id="afterlogin">
-                            <div class="dropdown">
-                                <a class="dropdown-toggle btn btn-secondary" style="background-color: #d66565;" data-toggle="dropdown">
-                                 <?php echo $this->session->userdata('username') ?>
+                        <li class="nav-item row">
+                            <div class="dropdown col-6" id="dropdown">
+                                <a class="dropdown-toggle btn btn-secondary" style="background-color: #d66565; height:50px;width:80px;font-size:15px;" data-toggle="dropdown">
+                                <?php echo $this->session->userdata('username') ?>
                                 </a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item">PROFILE</a>
+                                    <a class="dropdown-item" href="<?= base_url(); ?>index.php/WebController/myprofile_data/<?= $tabel ?>/<?= $username ?>">PROFILE</a>
                                     <a class="dropdown-item" href="<?php echo base_url("index.php/WebController/logout")?>">LOGOUT</a>
                                 </div>
                             </div>
+                            <img id="imgp" class="col-6" style="width:60px";height="60px" src="<?php echo base_url('assets/img/user.png')?>">
                         </li>
                     </ul>
                 </div>
