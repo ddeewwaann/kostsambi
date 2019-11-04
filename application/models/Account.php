@@ -11,6 +11,7 @@ class Account extends CI_Model{
             return false;
         }
     }
+    
     function cekid_daftar($username){
         $this->db->where('username',$username);
         $cek = $this->db->get('account')->result_array();

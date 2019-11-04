@@ -7,6 +7,8 @@ class WebController extends CI_Controller {
         $this->load->model('Account');
         $this->load->model('Kost');
         $this->load->model('Reservasi');
+        $this->load->model('Pemilik');
+        $this->load->model('Pencari');
         $this->load->helper(array('form', 'url'));
     }
 	public function index()
@@ -74,7 +76,66 @@ class WebController extends CI_Controller {
         $this->session->sess_destroy();
         redirect('WebController/index');
     }
-    public function daftarakun_data(){
+//    public function daftarakun_data(){
+//        $pass = $this->input->post('password');
+//        $data = array(
+//            "nama"=> $this->input->post('nama',true),
+//            "username"=> $this->input->post('username',true),
+//            "password"=> md5($this->input->post('password',true)),
+//            "email" => $this->input->post('email',true),
+//            "noidentitas"=> $this->input->post('noidentitas',true),
+//            "norekening"=> $this->input->post('norek',true),
+//            "contact" => $this->input->post('contact',true)
+//        );
+//        $username = $this->input->post('username');
+//        $role = $this->input->post('sebagai');
+//        $repass = $this->input->post('repassword');
+//        $akun = 'account';
+//        if($pass==$repass){
+//            if($this->Account->cekid_daftar($username)){
+//                $this->session->set_flashdata('daftar_alert','registrasi_gagal');
+//                redirect('WebController/index'); 
+//            }
+//            else{
+//                if($role=="PENCARI KOST"){
+//                    $table='pencari';
+//                    $data2 = array(
+//                        "username"=> $this->input->post('username',true),
+//                        "password"=> md5($this->input->post('password',true)),
+//                        "role"=> "1"
+//                    );
+//                    $role='1';
+//                    $this->Account->daftar_akun($akun, $data2);
+//                    $this->Pencari->daftar_akun($table, $data);
+//                }
+//                else{
+//                    $table='pemilik';
+//                    $data2 = array(
+//                        "username"=> $this->input->post('username',true),
+//                        "password"=> md5($this->input->post('password',true)),
+//                        "role"=> "2"
+//                    );
+//                    $role='2';
+//                    $this->Pemilik->daftar_akun($table, $data);
+//                    $this->Account->daftar_akun($akun, $data2);
+//                }
+//                $sess_data = array(
+//                    'logged_in' => 1,
+//                    'username' => $username,
+//                    'role' => $role
+//                );
+//                $this->session->set_userdata($sess_data);
+//                $this->session->set_flashdata('daftar_alert','registrasi_berhasil');
+//                redirect('WebController/index');
+//            }
+//        }
+//        else{
+//            $this->session->set_flashdata('daftar_alert','registrasi_gagal');
+//                redirect('WebController/index');
+//        }
+//    }
+    
+     public function daftarakun_data(){
         $pass = $this->input->post('password');
         $data = array(
             "nama"=> $this->input->post('nama',true),
@@ -90,40 +151,53 @@ class WebController extends CI_Controller {
         $repass = $this->input->post('repassword');
         $akun = 'account';
         if($pass==$repass){
-            if($this->Account->cekid_daftar($username)){
-                $this->session->set_flashdata('daftar_alert','registrasi_gagal');
-                redirect('WebController/index'); 
-            }
-            else{
-                if($role=="PENCARI KOST"){
-                    $table='pencari';
-                    $data2 = array(
-                        "username"=> $this->input->post('username',true),
-                        "password"=> md5($this->input->post('password',true)),
-                        "role"=> "1"
-                    );
-                    $role='1';
-                    $this->Account->daftar_akun($akun, $data2);
-                }
-                else{
-                    $table='pemilik';
-                    $data2 = array(
-                        "username"=> $this->input->post('username',true),
-                        "password"=> md5($this->input->post('password',true)),
-                        "role"=> "2"
-                    );
-                    $role='2';
-                    $this->Account->daftar_akun($akun, $data2);
-                }
+            if($role=="PENCARI KOST"){
+                $table='pencari';
+                $data2 = array(
+                    "username"=> $this->input->post('username',true),
+                    "password"=> md5($this->input->post('password',true)),
+                    "role"=> "1"
+                );
+                $role='1';
                 $sess_data = array(
                     'logged_in' => 1,
                     'username' => $username,
                     'role' => $role
                 );
-                $this->session->set_userdata($sess_data);
-                $this->Account->daftar_akun($table, $data);
-                $this->session->set_flashdata('daftar_alert','registrasi_berhasil');
-                redirect('WebController/index');
+                if($this->Pencari->daftar_akun($table, $data,$username,$data2)){
+                    //$this->Account->daftar_akun($akun, $data2);
+                    $this->session->set_userdata($sess_data);
+                    $this->session->set_flashdata('daftar_alert','registrasi_berhasil');
+                    redirect('WebController/index');
+                }
+                else{
+                    $this->session->set_flashdata('daftar_alert','registrasi_gagal');
+                    redirect('WebController/index');
+                }
+            }
+            else{
+                $table='pemilik';
+                $data2 = array(
+                    "username"=> $this->input->post('username',true),
+                    "password"=> md5($this->input->post('password',true)),
+                    "role"=> "2"
+                );
+                $role='2';
+                $sess_data = array(
+                    'logged_in' => 1,
+                    'username' => $username,
+                    'role' => $role
+                );
+                if($this->Pemilik->daftar_akun($table, $data,$username,$data2)){
+                    //$this->Account->daftar_akun($akun, $data2);
+                    $this->session->set_userdata($sess_data);
+                    $this->session->set_flashdata('daftar_alert','registrasi_berhasil');
+                    redirect('WebController/index');
+                }
+                else{
+                    $this->session->set_flashdata('daftar_alert','registrasi_gagal');
+                    redirect('WebController/index');
+                }
             }
         }
         else{
@@ -131,6 +205,8 @@ class WebController extends CI_Controller {
                 redirect('WebController/index');
         }
     }
+    
+    
     public function daftarkost_data(){
         $config['upload_path']          =  './upload/';
         $config['allowed_types']        =  'jpg|png';
