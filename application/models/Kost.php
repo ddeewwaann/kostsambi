@@ -91,6 +91,16 @@ class Kost extends CI_Model{
             return false;
         }
     }
+
+    function get_pemilik($kodekost){
+        $this->db->where('kodekost',$kodekost);
+        $result = $this->db->get('kost');
+        if($result->num_rows()==1){
+            return $result->row(0);
+        }else{
+            return false;
+        }
+    }
     
 }
 ?>

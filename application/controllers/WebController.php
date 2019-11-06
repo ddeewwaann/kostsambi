@@ -400,13 +400,19 @@ class WebController extends CI_Controller {
             $content = $this->upload->data();
             $path = "reservasi/".$content["file_name"];
             
+            $kodekost = $this->input->post('kodekost',true);
+            $pemilik = $this->Kost->get_pemilik($kodekost);
+            $status = 'false';
+
             $data = array(
             "username"=> $this->input->post('username',true),
             "kodekost"=> $this->input->post('kodekost',true),
+            "pemilik" => $pemilik->namapemilik,
             "jumlahkamar"=> $this->input->post('jumlahkamar',true),
             "nominalreservasi"=> $this->input->post('nominal',true),
             "email"=>$this->input->post('email',true),
-            "foto"=> $path
+            "foto"=> $path,
+            "status"=> $status
         );
             $jumlahkamar = $this->input->post('jumlahkamar',true);
             if(($cek) && ($jumlahkamar>0)){
@@ -423,6 +429,17 @@ class WebController extends CI_Controller {
             $this->session->set_flashdata('reservasi_alert', 'notlogin');
             redirect('WebController/index');
         }
+    }
+
+    public function reservasi_data($username){
+        if($this->session->userdata('logged_in')==1 && $this->session->userdata('role')==2){
+            $data['reservasi'] = $this->Reservasi->get_reservasi_pemilik($username);
+            $this->load->view('reservasi',$data);
+        }
+        else{
+            $this->load->view('homepage');
+        }
+        
     }
     
     

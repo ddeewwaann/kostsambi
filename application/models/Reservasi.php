@@ -12,9 +12,18 @@ class Reservasi extends CI_Model{
         }
     }
     
-    public function get_reservasi($table)
+    public function get_reservasi_admin($table)
 	{
+        $this->db->where('status','false');
         $data = $this->db->get($table);
+		return $data->result_array();
+    }
+    
+    public function get_reservasi_pemilik($username)
+	{
+        $this->db->where('pemilik',$username);
+        $this->db->where('status','true');
+        $data = $this->db->get('reservasi');
 		return $data->result_array();
 	}
     
@@ -22,6 +31,17 @@ class Reservasi extends CI_Model{
         $this->db->where('no',$no);
 		return $this->db->delete('reservasi');
     }
+
+    function update_reservasi($no,$data){
+        $this->db->where('no', $no);
+        $update = $this->db->update('reservasi',$data);
+        if ($update){
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+    }
+
 }
 
 

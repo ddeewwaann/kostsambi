@@ -100,6 +100,7 @@
                     $("#daftarkankost").hide();
                     $("#mykost").hide();
                     $("#admin").hide();
+                    $("#reservasi").hide();
                 });
                 </script>';
             $tabel = 'pencari';
@@ -112,6 +113,7 @@
                     $("#afterlogin").show();
                     $("#daftarkankost").show();
                     $("#mykost").show();
+                    $("#reservasi").show();
                     $("#admin").hide();
                 });
                 </script>';
@@ -126,6 +128,7 @@
                     $("#daftarkankost").hide();
                     $("#mykost").hide();
                     $("#profile").hide();
+                    $("#reservasi").hide();
                 });
                 </script>';
         }
@@ -134,6 +137,7 @@
                 $(document).ready(function(){
                     $("#afterlogin").hide();
                     $("#loginbutton").show();
+                    $("#reservasi").hide();
                 });
                 </script>';
         }
@@ -170,6 +174,7 @@
                                     
                                     <a id="profile" href="<?= base_url(); ?>index.php/WebController/myprofile_data/<?= $tabel ?>/<?= $username ?>" class="dropdown-item">PROFILE</a>
                                     <a id="admin" class="dropdown-item" href="<?php echo base_url("index.php/AdminController/admin")?>">ADMIN</a>
+                                    <a id="reservasi" class="dropdown-item" href="<?= base_url(); ?>index.php/WebController/reservasi_data/<?= $this->session->userdata('username')?>">RESERVASI</a>
                                     <a class="dropdown-item" href="<?php echo base_url("index.php/WebController/logout")?>">LOGOUT</a>
                                     
                                 </div>

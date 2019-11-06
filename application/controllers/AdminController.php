@@ -14,24 +14,48 @@ class AdminController extends CI_Controller{
     }
 
     public function admin(){
-        $pencari = 'pencari';
-        $data['pencari'] = $this->Pencari->getakun($pencari);
-        $this->load->view('admin',$data);
+        if($this->session->userdata('logged_in')==1 && $this->session->userdata('role')==3){
+            $pencari = 'pencari';
+            $data['pencari'] = $this->Pencari->getakun($pencari);
+            $this->load->view('admin',$data);
+        }
+        else{
+            $this->load->view('homepage');
+        }
+        
     }
     public function admin_pemilik(){
-        $pemilik = 'pemilik';
-        $data['pemilik'] = $this->Pemilik->getakun($pemilik);
-        $this->load->view('admin_pemilik',$data);
+        if($this->session->userdata('logged_in')==1 && $this->session->userdata('role')==3){
+            $pemilik = 'pemilik';
+            $data['pemilik'] = $this->Pemilik->getakun($pemilik);
+            $this->load->view('admin_pemilik',$data);
+        }
+        else{
+            $this->load->view('homepage');
+        }
+        
     }
     public function admin_listkost(){
-        $kost = 'kost';
-        $data['kost'] = $this->Kost->getkost($kost);
-        $this->load->view('admin_listkost',$data);
+        if($this->session->userdata('logged_in')==1 && $this->session->userdata('role')==3){
+            $kost = 'kost';
+            $data['kost'] = $this->Kost->getkost($kost);
+            $this->load->view('admin_listkost',$data);
+        }
+        else{
+            $this->load->view('homepage');
+        }
+        
     }
      public function admin_reservasi(){
-        $reservasi = 'reservasi';
-        $data['reservasi'] = $this->Reservasi->get_reservasi($reservasi);
-        $this->load->view('admin_reservasi',$data);
+        if($this->session->userdata('logged_in')==1 && $this->session->userdata('role')==3){
+            $reservasi = 'reservasi';
+            $data['reservasi'] = $this->Reservasi->get_reservasi_admin($reservasi);
+            $this->load->view('admin_reservasi',$data);
+        }
+        else{
+            $this->load->view('homepage');
+        }
+        
     }
     public function delete_akun($username,$role)
 	{
@@ -96,8 +120,14 @@ class AdminController extends CI_Controller{
             $data_update = array(
             "jumlahkamar"=> $jumlahkamar-1
             );
+
+            $data_update2 = array(
+            "status"=> 'true'
+            );
+
+
             $update = $this->Kost->update_kost($kodekost,$data_update);
-            $this->Reservasi->delete_reservasi($no);
+            $this->Reservasi->update_reservasi($no,$data_update2);
             
             
             $this->session->set_flashdata('reservasi_alert', 'berhasil');
