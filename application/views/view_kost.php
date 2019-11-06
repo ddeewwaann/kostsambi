@@ -87,6 +87,7 @@
                     $("#loginbtn").show();
                     $("#reservasi").show();
                     $("#kode").hide();
+                    $("#imgp").hide();
                 });
                 </script>';
         }

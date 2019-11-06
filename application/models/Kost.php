@@ -2,16 +2,35 @@
 
 class Kost extends CI_Model{
     
-    function daftarkost($data){
-        $table = 'kost';
-        $daftar= $this->db->insert($table,$data);
-        if($daftar){
-            return true;
-        }
-        else{
+    // function daftarkost($data){
+    //     $table = 'kost';
+    //     $daftar= $this->db->insert($table,$data);
+    //     if($daftar){
+    //         return true;
+    //     }
+    //     else{
+    //         return false;
+    //     }
+    // }
+
+    function daftarkost($data,$kodekost){
+        $this->db->where('kodekost',$kodekost);
+        $cek = $this->db->get('kost');
+        if($cek->num_rows()==1){
             return false;
         }
+        else{
+            $daftar= $this->db->insert('kost',$data);
+            if($daftar){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        
     }
+
     function cekkode_daftar($kodekost){
         $this->db->where('kodekost',$kodekost);
         $cek = $this->db->get('kost')->result_array();
@@ -57,8 +76,8 @@ class Kost extends CI_Model{
     }
     
     function search_kost($data){
-        $this->db->like('alamat ',$data);
-        $query  =   $this->db->get('kost');
+        $this->db->like('alamat',$data);
+        $query  = $this->db->get('kost');
         return $query->result_array();
     }
     

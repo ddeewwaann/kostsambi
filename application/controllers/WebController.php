@@ -244,14 +244,13 @@ class WebController extends CI_Controller {
         $kodekost = $this->input->post('kodekost',true);
         $cekkost = $this->Kost->cek_kost($kodekost);
         if($cek && $cek2 && $cek3){
-            if ($cekkost){
-                $this->session->set_flashdata('daftarkost_alert', 'kode');
-                redirect('WebController/daftarkost');
-            }else{
-                $this->Kost->daftarkost($data);
+            if($this->Kost->daftarkost($data,$kodekost)){
                 $this->session->set_flashdata('daftarkost_alert', 'berhasil');
                 redirect('WebController/daftarkost');
-                
+            }
+            else{
+                $this->session->set_flashdata('daftarkost_alert', 'kode');
+                redirect('WebController/daftarkost');
             }
         }
         else{
@@ -342,16 +341,13 @@ class WebController extends CI_Controller {
     }
     
     public function search_kost(){
-        if($this->input->post('keyword')) {
-            redirect('WebController/search_kost');
-        }
         $data['kostan'] = $this->Kost->search_kost($this->input->post('keyword'));
         $this->load->view('search_kost',$data); 
     }
     
     public function view_kost_pencari($kodekost){
-            $data['view_kost'] = $this->Kost->getkost_kode($kodekost);
-            $this->load->view('view_kost',$data); 
+        $data['view_kost'] = $this->Kost->getkost_kode($kodekost);
+        $this->load->view('view_kost',$data); 
         
     }
     

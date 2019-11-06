@@ -15,12 +15,12 @@ class AdminController extends CI_Controller{
 
     public function admin(){
         $pencari = 'pencari';
-        $data['pencari'] = $this->Account->getakun($pencari);
+        $data['pencari'] = $this->Pencari->getakun($pencari);
         $this->load->view('admin',$data);
     }
     public function admin_pemilik(){
         $pemilik = 'pemilik';
-        $data['pemilik'] = $this->Account->getakun($pemilik);
+        $data['pemilik'] = $this->Pemilik->getakun($pemilik);
         $this->load->view('admin_pemilik',$data);
     }
     public function admin_listkost(){

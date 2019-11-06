@@ -32,6 +32,14 @@ class Pemilik extends CI_Model{
         
     }
 
+    public function getakun($table)
+	{
+        $data = $this->db->get($table);
+		return $data->result_array();
+    }
+    
+    
+
     function update_profile($table,$username,$data){
         $this->db->where('username', $username);
         $update = $this->db->update($table,$data);
