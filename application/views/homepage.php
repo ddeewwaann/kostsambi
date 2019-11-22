@@ -123,14 +123,15 @@
         else if(($this->session->userdata('logged_in')==1) && ($this->session->userdata('role')==3)){
             echo '<script>
                 $(document).ready(function(){
+                    $("#profile").hide();
                     $("#loginbutton").hide();
                     $("#afterlogin").show();
                     $("#daftarkankost").hide();
                     $("#mykost").hide();
-                    $("#profile").hide();
                     $("#reservasi").hide();
                 });
                 </script>';
+            $username = $this->session->userdata('username');
         }
         else{
              echo '<script>
@@ -172,7 +173,7 @@
                                 </a>
                                 <div class="dropdown-menu">
                                     
-                                    <a id="profile" href="<?= base_url(); ?>index.php/WebController/myprofile_data/<?= $tabel ?>/<?= $username ?>" class="dropdown-item">PROFILE</a>
+                                    <a id="profile" href='<?= base_url(); ?>index.php/WebController/myprofile_data/<?= $tabel ?>/<?= $username ?> ' class='dropdown-item'>PROFILE</a>
                                     <a id="admin" class="dropdown-item" href="<?php echo base_url("index.php/AdminController/admin")?>">ADMIN</a>
                                     <a id="reservasi" class="dropdown-item" href="<?= base_url(); ?>index.php/WebController/reservasi_data/<?= $this->session->userdata('username')?>">RESERVASI</a>
                                     <a class="dropdown-item" href="<?php echo base_url("index.php/WebController/logout")?>">LOGOUT</a>

@@ -146,6 +146,7 @@ class WebController extends CI_Controller {
             "norekening"=> $this->input->post('norek',true),
             "contact" => $this->input->post('contact',true)
         );
+        $email = $this->input->post('email');
         $username = $this->input->post('username');
         $role = $this->input->post('sebagai');
         $repass = $this->input->post('repassword');
@@ -166,6 +167,10 @@ class WebController extends CI_Controller {
                 );
                 if($this->Pencari->daftar_akun($table, $data,$username,$data2)){
                     //$this->Account->daftar_akun($akun, $data2);
+                    $email_data = array(
+                        'email' => $email
+                    );
+                    $this->session->set_userdata($email_data);
                     $this->session->set_userdata($sess_data);
                     $this->session->set_flashdata('daftar_alert','registrasi_berhasil');
                     redirect('WebController/index');
@@ -209,7 +214,7 @@ class WebController extends CI_Controller {
     
     public function daftarkost_data(){
         $config['upload_path']          =  './upload/';
-        $config['allowed_types']        =  'jpg|png';
+        $config['allowed_types']        =  'jpg|png|jpeg';
         $config['max_size']             =  2048;
         $config['max_width']            =  5000;
         $config['max_height']           = 5000;
