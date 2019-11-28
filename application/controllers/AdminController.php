@@ -78,7 +78,7 @@ class AdminController extends CI_Controller{
 		redirect('AdminController/admin_listkost');
     }
     public function validasi_reservasi($email,$kodekost,$no,$jumlahkamar){
-        if($this->session->userdata('logged_in')==1){
+        if($this->session->userdata('logged_in')==1 && $this->session->userdata('role')==3 ){
             $to = $email;
             $subject = 'VALIDASI RESERVASI';
             $from = 'muhammad.dsatriakamal@gmail.com';

@@ -273,7 +273,7 @@ class WebController extends CI_Controller {
 		redirect('webController/mykost');
 	}
     public function view_kost_pemilik($kodekost){
-        if($this->session->userdata('logged_in')==1){
+        if($this->session->userdata('logged_in')==1 && $this->session->userdata('role')==2){
             $data['view_kost'] = $this->Kost->getkost_kode($kodekost);
             $this->load->view('view_kost',$data); 
         }
