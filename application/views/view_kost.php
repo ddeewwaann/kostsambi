@@ -59,6 +59,7 @@
                     $("#mykost").hide();
                     $("#reservasi").show();
                     $("#kode").hide();
+                    $("#reservasi").hide();
                 });
                 </script>';
             $tabel = 'pencari';
@@ -73,6 +74,7 @@
                     $("#mykost").show();
                     $("#reservasi").hide();
                     $("#kode").show();
+                    $("#reservasi").show();
                 });
                 </script>';
             $tabel = 'pemilik';
@@ -88,6 +90,7 @@
                     $("#reservasi").show();
                     $("#kode").hide();
                     $("#imgp").hide();
+                    $("#reservasi").hide();
                 });
                 </script>';
         }
@@ -97,9 +100,9 @@
     
     <body>
         <section>
-            <nav class="navbar fixed-top navbar-expand-lg" style="background-color:#C6E6F1">
-                <a class="navbar-brand font-weight-bold" style="color: #2d5066;font-size:25px" href="<?php echo base_url('')?>">
-                        <img src="<?php echo base_url('assets/img/logo-01.png')?>" width="50" height="50" alt="">
+            <nav class="navbar fixed-top navbar-expand-lg" style="background-color:#2d5066">
+                <a class="navbar-brand font-weight-bold" style="color: white;font-size:25px" href="<?php echo base_url('')?>">
+                        <img src="<?php echo base_url('assets/img/logoputih.png')?>" width="50" height="50" alt="">
                         KOST SAMBI
                 </a>
                 <button style="background-color:#2d5066"  class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -110,10 +113,10 @@
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link font-weight-bold" id="daftarkankost" href="<?php echo base_url('index.php/WebController/daftarkost')?>" style="color: #2d5066;font-size:18px">DAFTARKAN KOST</a>
+                            <a class="nav-link font-weight-bold" id="daftarkankost" href="<?php echo base_url('index.php/WebController/daftarkost')?>" style="color: white;font-size:18px">DAFTARKAN KOST</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link font-weight-bold" id="mykost" href="<?php echo base_url('index.php/WebController/mykost')?>" style="color: #2d5066;font-size:18px">MY KOST</a>
+                            <a class="nav-link font-weight-bold" id="mykost" href="<?php echo base_url('index.php/WebController/mykost')?>" style="color: white;font-size:18px">MY KOST</a>
                         </li>
                         <li class="nav-item" id="loginbutton">
                             <a href="<?php echo base_url("index.php/WebController/index")?>"><button class="btn btn-secondary" style="background-color: #d66565; height:45px;width:100px;font-size:15px;">LOGIN</button></a>
@@ -125,6 +128,7 @@
                                 </a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="<?= base_url(); ?>index.php/WebController/myprofile_data/<?= $tabel ?>/<?= $username ?>">PROFILE</a>
+                                    <a id="reservasi" class="dropdown-item" href="<?= base_url(); ?>index.php/WebController/reservasi_data/<?= $this->session->userdata('username')?>">RESERVASI</a>
                                     <a class="dropdown-item" href="<?php echo base_url("index.php/WebController/logout")?>">LOGOUT</a>
                                 </div>
                             </div>

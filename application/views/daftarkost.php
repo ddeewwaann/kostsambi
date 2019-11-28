@@ -37,6 +37,7 @@
                     $("#afterlogin").show();
                     $("#daftarkankost").hide();
                     $("#mykost").hide();
+                    $("#reservasi").hide();
                 });
                 </script>';
             $tabel = 'pencari';
@@ -49,6 +50,7 @@
                     $("#afterlogin").show();
                     $("#daftarkankost").show();
                     $("#mykost").show();
+                    $("#reservasi").show();
                 });
                 </script>';
             $tabel = 'pemilik';
@@ -60,6 +62,7 @@
                     $("#imgp").hide();
                     $("#afterlogin").hide();
                     $("#loginbutton").show();
+                    $("#reservasi").hide();
                 });
                 </script>';
         }
@@ -96,6 +99,7 @@
                                 </a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="<?= base_url(); ?>index.php/WebController/myprofile_data/<?= $tabel ?>/<?= $username ?>">PROFILE</a>
+                                    <a id="reservasi" class="dropdown-item" href="<?= base_url(); ?>index.php/WebController/reservasi_data/<?= $this->session->userdata('username')?>">RESERVASI</a>
                                     <a class="dropdown-item" href="<?php echo base_url("index.php/WebController/logout")?>">LOGOUT</a>
                                 </div>
                             </div>

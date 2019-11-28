@@ -67,9 +67,9 @@
 
     <body>
         <section>
-            <nav class="navbar fixed-top navbar-expand-lg" style="background-color:#76c2d6">
-                <a class="navbar-brand font-weight-bold" style="color: #2d5066;font-size:25px" href="<?php echo base_url('')?>">
-                    <img src="<?php echo base_url('assets/img/logo-01.png')?>" width="50" height="50" alt="">
+            <nav class="navbar fixed-top navbar-expand-lg" style="background-color:#2d5066">
+                <a class="navbar-brand font-weight-bold" style="color: white;font-size:25px" href="<?php echo base_url('')?>">
+                    <img src="<?php echo base_url('assets/img/logoputih.png')?>" width="50" height="50" alt="">
                     KOST SAMBI
                 </a>
                 <button style="background-color:#2d5066"  class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,10 +80,10 @@
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link font-weight-bold" id="daftarkankost" href="<?php echo base_url('index.php/WebController/daftarkost')?>" style="color: #2d5066;font-size:18px">DAFTARKAN KOST</a>
+                            <a class="nav-link font-weight-bold" id="daftarkankost" href="<?php echo base_url('index.php/WebController/daftarkost')?>" style="color: white;font-size:18px">DAFTARKAN KOST</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link font-weight-bold" id="mykost" href="<?php echo base_url('index.php/WebController/mykost')?>" style="color: #2d5066;font-size:18px">MY KOST</a>
+                            <a class="nav-link font-weight-bold" id="mykost" href="<?php echo base_url('index.php/WebController/mykost')?>" style="color: white;font-size:18px">MY KOST</a>
                         </li>
                         <li class="nav-item" id="loginbutton">
                             <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCenter"  style="background-color: #d66565;">LOGIN</button>
